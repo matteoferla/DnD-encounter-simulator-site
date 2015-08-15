@@ -4,7 +4,7 @@ import os
 def application(environ, start_response):
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
-        #from cgi import parse_qs
+        from cgi import parse_qs
         try:
             request_body_size = int(environ['CONTENT_LENGTH'])
             request_body = environ['wsgi.input'].read(request_body_size)
@@ -17,9 +17,13 @@ def application(environ, start_response):
         try:
             import json
             response_body = str(request_body)
-            if type(request_body) is str:
-                response_body +="request is a string"
-
+            x=parse_qs(request_body)
+            response_body +=str(x.keys())
+            #l=json.loads(str(request_body)[1:])
+            rounds = 100
+            #response_body +=str(l)
+            #wwe=Encounter(*l)
+            #response_body +=str(wwe.go_to_war(rounds))
         except Exception as e:
             response_body += "ERROR line 26: "+str(e)
 
