@@ -11,7 +11,8 @@ def testing():
         line="Error: "+str(e)
 
 def application(environ, start_response):
-    if environ['REQUEST_METHOD'] == 'POST':              #If POST...
+    if 1==0:
+    #if environ['REQUEST_METHOD'] == 'POST':              #If POST...
         #from cgi import parse_qs
         try:
             request_body_size = int(environ['CONTENT_LENGTH'])
