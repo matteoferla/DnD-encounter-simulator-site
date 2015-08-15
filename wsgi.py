@@ -15,15 +15,12 @@ def application(environ, start_response):
         #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
         try:
-            import json
-            response_body = str(request_body)
-            response_body +="\n2"+str(request_body)[1:]
-            response_body +="\n3"+str(request_body)[2:-1]
+            import json, DnD_Battler
+
             l=json.loads(str(request_body)[2:-1])
             rounds = 100
-            response_body +="\n4"+str(l)
-            wwe=Encounter(*l)
-            response_body +=str(wwe.go_to_war(rounds))
+            wwe=DnD_Battler.Encounter(*l)
+            response_body =str(wwe.go_to_war(rounds))
         except Exception as e:
             response_body += "\nERROR line 26: "+str(e)
 
