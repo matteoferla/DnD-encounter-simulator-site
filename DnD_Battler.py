@@ -754,7 +754,6 @@ class Encounter():
 ########### MAIN #####
 ##################################################################
 ################### HERE IS WHERE YOU CAN DECIDE THE LINE UP #####
-
 if __name__=="__main__":
     rounds = 100
 

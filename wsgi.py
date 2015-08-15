@@ -1,17 +1,37 @@
 #!/usr/bin/env python
 import os
 
-try:
-    import DnD_Battler
-    rounds = 100
-    wwe=DnD_Battler.Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
-    line=str(wwe.go_to_war(rounds))
-except Exception as e:
-    line="Error: "+str(e)
-
-print(line)
+def testing():
+    try:
+        import DnD_Battler
+        rounds = 100
+        wwe=DnD_Battler.Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
+        line=str(wwe.go_to_war(rounds))
+    except Exception as e:
+        line="Error: "+str(e)
 
 def application(environ, start_response):
+    if environ['REQUEST_METHOD'] == 'POST':              #If POST...
+        #from cgi import parse_qs
+        try:
+            request_body_size = int(environ['CONTENT_LENGTH'])
+            request_body = environ['wsgi.input'].read(request_body_size)
+        except (TypeError, ValueError):
+            request_body = "0"
+
+        #parsed_body = parse_qs(request_body)
+        #value = parsed_body.get('test_text', [''])[0] #Returns the first value
+
+        try:
+            response_body = request_body+' back'
+        except:
+            response_body = 'error'
+
+        status = '200 OK'
+        headers = [('Content-type', 'text/plain')]
+        start_response(status, headers)
+        return [response_body+" too"]
+
 
     ctype = 'text/plain'
     if environ['PATH_INFO'] == '/health':
@@ -22,20 +42,9 @@ def application(environ, start_response):
         response_body = '\n'.join(response_body)
     else:
         ctype = 'text/html'
-        response_body = '''<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>D&D Battle simulator</title>
-<style>
+        h=open("static.html")
+        response_body = h.read()
 
-</style>
-</head>
-<body>
-<div style="padding: 40px">'''+line+'''</div>
-</body>
-</html>'''
     response_body = response_body.encode('utf-8')
 
     status = '200 OK'
@@ -49,6 +58,12 @@ def application(environ, start_response):
 #
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
-    httpd = make_server('localhost', 8051, application)
+    httpd = make_server('localhost', 8080, application) #Change back to 8051.
+    print("Serving HTTP on port 8080...")
     # Wait for a single request, serve it and quit.
     httpd.handle_request()
+
+#from wsgiref.simple_server import make_server
+#from cgi import parse_qs, escape
+
+
