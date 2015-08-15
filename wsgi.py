@@ -12,8 +12,9 @@ def application(environ, start_response):
         response_body = '\n'.join(response_body)
     else:
         ctype = 'text/html'
+        os.chdir("app-root")
         try:
-            h=open("app-root/static.html")
+            h=open("static.html")
             response_body = h.read()
             response_body = response_body.encode('utf-8')
         except Exception as e:
