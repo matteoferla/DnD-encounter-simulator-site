@@ -22,7 +22,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","wsgi.py",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("hi");
+xmlhttp.send(JSON.stringify([{a: 1, b:2},3]));
 }
 
 </script>
@@ -34,5 +34,6 @@ xmlhttp.send("hi");
 <br/>
 <br/>
 <button onclick="duel();">Click me! </button>
+<textarea>write here...</textarea>
 </body>
 </html>
