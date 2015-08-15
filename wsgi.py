@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 import os
 
-import DnD_Battler
-rounds = 100
-wwe=Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
+try:
+    import DnD_Battler
+    rounds = 100
+    wwe=DnD_Battler.Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
+    line=str(wwe.go_to_war(rounds))
+except Exception as e:
+    line="Error: "+str(e)
 
-
+print(line)
 
 def application(environ, start_response):
 
@@ -29,7 +33,7 @@ def application(environ, start_response):
 </style>
 </head>
 <body>
-<div style="padding: 40px">'''+str(wwe.go_to_war(rounds))+'''</div>
+<div style="padding: 40px">'''+line+'''</div>
 </body>
 </html>'''
     response_body = response_body.encode('utf-8')

@@ -1,6 +1,6 @@
 __author__ = "Matteo"
 __copyright__ = "Don't blame me for a TPK"
-__email__ = "matteo.ferla@gmail.com"
+__email__ = "matteo.ferla on the gmail"
 __date__ = '25/03/15'
 
 import random
