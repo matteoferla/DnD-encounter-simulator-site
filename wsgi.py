@@ -15,9 +15,15 @@ def application(environ, start_response):
         #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
         try:
-            response_body = str(request_body)
-        except:
-            response_body = 'error'
+            import json
+            response_body = type(response_body)+"\n"
+            l=json.loads(str(response_body)[1:])
+            rounds = 100
+            response_body +=str(l)
+            wwe=Encounter(*l)
+            response_body +=str(wwe.go_to_war(rounds))
+        except Exception as e:
+            response_body = str(e)
 
         status = '200 OK'
         headers = [('Content-type', 'text/plain')]
