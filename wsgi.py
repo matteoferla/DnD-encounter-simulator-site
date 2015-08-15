@@ -18,7 +18,8 @@ def application(environ, start_response):
             import json
             response_body = str(request_body)
             x=parse_qs(request_body)
-            response_body +=str(x.keys())
+            response_body +="\n"+str(x.keys())
+            response_body +="\n"+str(request_body)[1:]
             #l=json.loads(str(request_body)[1:])
             rounds = 100
             #response_body +=str(l)
