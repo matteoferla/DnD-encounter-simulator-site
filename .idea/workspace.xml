@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="" />
+    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static.html" afterPath="$PROJECT_DIR$/static.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,21 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.379311" vertical-offset="51" max-vertical-offset="1054">
-              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state vertical-scroll-proportion="-0.1904762" vertical-offset="459" max-vertical-offset="1156">
+              <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DnD_Battler.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DnD_Battler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9119171" vertical-offset="12534" max-vertical-offset="13175">
-              <caret line="759" column="92" selection-start-line="759" selection-start-column="18" selection-end-line="759" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="12636" max-vertical-offset="13175">
+              <caret line="757" column="4" selection-start-line="757" selection-start-column="4" selection-end-line="760" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -440,18 +443,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.379311" vertical-offset="51" max-vertical-offset="1054">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="12636" max-vertical-offset="13175">
+          <caret line="757" column="4" selection-start-line="757" selection-start-column="4" selection-end-line="760" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
+    <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9119171" vertical-offset="12534" max-vertical-offset="13175">
-          <caret line="759" column="92" selection-start-line="759" selection-start-column="18" selection-end-line="759" selection-end-column="92" />
+        <state vertical-scroll-proportion="-0.1904762" vertical-offset="459" max-vertical-offset="1156">
+          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
           <folding />
         </state>
       </provider>

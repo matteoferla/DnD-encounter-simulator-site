@@ -5,11 +5,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>D&D Battle simulator</title>
 <style></style>
-<script type="text/javascript" scr="jquery-2.1.4.min.js"></script>
+<script type="text/javascript" scr="app-root/repo/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" >
-// Submit post on submit
+if (window.jQuery) {  
+    console.log('we have jquery'); 
+} else {
+    console.log('we dont have jquery');
+}
 
-// AJAX for posting
+
 function duel() {
 document.getElementById("out").innerHTML="Working on it";
 xmlhttp=new XMLHttpRequest();
@@ -30,7 +34,8 @@ xmlhttp.send("["+$("#lineup").val()+"]");
 <body>
 <div style="padding: 40px">
 <textarea id=lineup>"netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar"</textarea>
-<button onclick="duel();">Calculate</button>
+<br/>
+<button onclick="duel();">Calculate</button><br/>
 <pre id=out></pre>
 </div>
 <br/>
