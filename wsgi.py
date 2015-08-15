@@ -58,8 +58,8 @@ def application(environ, start_response):
 #
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
-    httpd = make_server('localhost', 8080, application) #Change back to 8051.
-    print("Serving HTTP on port 8080...")
+    httpd = make_server('localhost', 8051, application) #Change back to 8051.
+   # print("Serving HTTP on port 8080...")
     # Wait for a single request, serve it and quit.
     httpd.handle_request()
 
