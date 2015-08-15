@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static.html" afterPath="$PROJECT_DIR$/static.html" />
-    </list>
+    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="" />
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7619048" vertical-offset="51" max-vertical-offset="1054">
+            <state vertical-scroll-proportion="-9.379311" vertical-offset="51" max-vertical-offset="1054">
               <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DnD_Battler.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9119171" vertical-offset="12534" max-vertical-offset="13175">
+              <caret line="759" column="92" selection-start-line="759" selection-start-column="18" selection-end-line="759" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -408,16 +416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0172415" vertical-offset="12660" max-vertical-offset="13192">
-          <caret line="755" column="66" selection-start-line="755" selection-start-column="66" selection-end-line="755" selection-end-column="66" />
-          <folding>
-            <element signature="e#128#141#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py-bkp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4629" max-vertical-offset="5015">
@@ -444,8 +442,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7619048" vertical-offset="51" max-vertical-offset="1054">
+        <state vertical-scroll-proportion="-9.379311" vertical-offset="51" max-vertical-offset="1054">
           <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9119171" vertical-offset="12534" max-vertical-offset="13175">
+          <caret line="759" column="92" selection-start-line="759" selection-start-column="18" selection-end-line="759" selection-end-column="92" />
           <folding />
         </state>
       </provider>

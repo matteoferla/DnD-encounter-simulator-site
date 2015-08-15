@@ -22,18 +22,19 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","wsgi.py",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send(JSON.stringify([{a: 1, b:2},3]));
+xmlhttp.send("["+$("#lineup").val()+"]");
 }
 
 </script>
 </head>
 <body>
 <div style="padding: 40px">
-  <pre id=out>DATA GOES HERE</pre>
+<textarea id=lineup>"netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar"</textarea>
+<button onclick="duel();">Calculate</button>
+<pre id=out></pre>
 </div>
 <br/>
 <br/>
-<button onclick="duel();">Click me! </button>
-<textarea>write here...</textarea>
+
 </body>
 </html>
