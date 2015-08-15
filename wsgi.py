@@ -16,14 +16,10 @@ def application(environ, start_response):
 
         try:
             import json
-            response_body = ""
+            response_body = str(request_body)
             if type(request_body) is str:
-                response_body ="request is a string"
-            l=json.loads(str(request_body)[1:])
-            rounds = 100
-            response_body +=str(l)
-            wwe=Encounter(*l)
-            response_body +=str(wwe.go_to_war(rounds))
+                response_body +="request is a string"
+
         except Exception as e:
             response_body += "ERROR line 26: "+str(e)
 
