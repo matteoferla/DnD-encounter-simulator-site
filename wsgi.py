@@ -15,7 +15,7 @@ def application(environ, start_response):
         #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
         try:
-            response_body = request_body+' back'
+            response_body = str(request_body)
         except:
             response_body = 'error'
 
