@@ -12,9 +12,12 @@ def application(environ, start_response):
         response_body = '\n'.join(response_body)
     else:
         ctype = 'text/html'
-        h=open("static.html")
-        response_body = h.read()
-        response_body = response_body.encode('utf-8')
+        try:
+            h=open("static.html")
+            response_body = h.read()
+            response_body = response_body.encode('utf-8')
+        except Exception as e:
+            response_body = str(e);
 
     status = '200 OK'
     response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
