@@ -12,7 +12,7 @@ def application(environ, start_response):
         response_body = '\n'.join(response_body)
     else:
         ctype = 'text/html'
-        os.chdir("app-root")
+        os.chdir("app-root/repo")
         try:
             h=open("static.html")
             response_body = h.read()
