@@ -17,7 +17,7 @@ def application(environ, start_response):
             response_body = h.read()
             response_body = response_body.encode('utf-8')
         except Exception as e:
-            response_body = str(e)+"<br/>"+str(os.listdir());
+            response_body = str(e)+"<br/>"+str(os.listdir())
 
     status = '200 OK'
     response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
