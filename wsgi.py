@@ -25,7 +25,7 @@ def application(environ, start_response):
             wwe=Encounter(*l)
             response_body +=str(wwe.go_to_war(rounds))
         except Exception as e:
-            response_body = "ERROR line 26: "+str(e)
+            response_body += "ERROR line 26: "+str(e)
 
         status = '200 OK'
         headers = [('Content-type', 'text/plain')]
