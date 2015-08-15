@@ -16,8 +16,12 @@ def application(environ, start_response):
 
         try:
             import json
-            response_body = type(response_body)+"\n"
-
+            response_body = type(request_body)+"\n"
+            l=json.loads(str(request_body)[1:])
+            rounds = 100
+            response_body +=str(l)
+            wwe=Encounter(*l)
+            response_body +=str(wwe.go_to_war(rounds))
         except Exception as e:
             response_body = "ERROR line 26: "+str(e)
 
