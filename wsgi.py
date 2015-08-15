@@ -17,11 +17,11 @@ def application(environ, start_response):
         try:
             import json
             response_body = str(request_body)
-            response_body +="\n"+str(request_body)[1:]
-            response_body +="\n"+str(request_body)[2:-2]
+            response_body +="\n2"+str(request_body)[1:]
+            response_body +="\n3"+str(request_body)[2:-1]
             l=json.loads(str(request_body)[2:-1])
             rounds = 100
-            response_body +=str(l)
+            response_body +="\n4"+str(l)
             wwe=Encounter(*l)
             response_body +=str(wwe.go_to_war(rounds))
         except Exception as e:
