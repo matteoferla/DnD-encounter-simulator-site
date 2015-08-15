@@ -18,13 +18,14 @@ def application(environ, start_response):
             import json
             response_body = str(request_body)
             response_body +="\n"+str(request_body)[1:]
-            l=json.loads(str(request_body)[1:])
+            response_body +="\n"+str(request_body)[2:-2]
+            l=json.loads(str(request_body)[2:-1])
             rounds = 100
             response_body +=str(l)
             wwe=Encounter(*l)
             response_body +=str(wwe.go_to_war(rounds))
         except Exception as e:
-            response_body += "ERROR line 26: "+str(e)
+            response_body += "\nERROR line 26: "+str(e)
 
         status = '200 OK'
         headers = [('Content-type', 'text/plain')]
