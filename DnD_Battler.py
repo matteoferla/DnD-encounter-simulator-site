@@ -159,6 +159,159 @@ class Creature:
         self.xp = xp
         self.arena=None
 
+    def preset(name):
+        if name=="netsharpshooter":
+            return Creature("net-build bard", "good",
+                        hp=18, ac=18,
+                        initiative_bonus=2,
+                        healing_spells=6, healing_bonus=3, healing_dice=4,
+                        attack_parameters=[['rapier', 4, 2, 8]], alt_attack=['net', 4, 0, 0], level=3)
+        elif name=="bard":
+            return Creature("Bard", "good",
+                              hp=18, ac=18,
+                              healing_spells=6, healing_bonus=3, healing_dice=4,
+                              initiative_bonus=2,
+                              attack_parameters=[['rapier', 4, 2, 8]])
+
+        elif name=="generic_tank":
+            return Creature("generic tank", "good",
+                                hp=20, ac=17,
+                                initiative_bonus=2,
+                                attack_parameters=[['great sword', 5, 3, 6,6]])
+
+        elif name=="mega_tank":
+            return Creature("mega tank", "good",
+                             hp=24, ac=17,
+                             initiative_bonus=2,
+                             attack_parameters=[['great sword', 5, 3, 10]])
+
+        elif name=="a_b_dragon":
+            return Creature("Adult black dragon (minus frightful)", "evil",
+                              ac=19, hp=195, initiative_bonus=2,
+                              attack_parameters=[['1', 11, 6, 10, 10], ['2', 11, 6, 6, 6], ['2', 11, 4, 6, 6]])
+
+        elif name=="y_b_dragon":
+            return Creature("Young black dragon", "evil",
+                              ac=18, hp=127,
+                              initiative_bonus=2,
+                              attack_parameters=[['1', 7, 4, 10, 10, 8], ['2', 7, 4, 6, 6], ['2', 7, 4, 6, 6]])
+
+        elif name=="frost_giant":
+            return Creature("Frost Giant", "evil",
+                               ac=15, hp=138,
+                               attack_parameters=[['club', 9, 6, 12, 12, 12], ['club', 9, 6, 12, 12, 12]])
+
+        elif name=="hill_giant":
+            return Creature("Hill Giant", "evil",
+                              ac=13, hp=105,
+                              attack_parameters=[['club', 8, 5, 8, 8, 8], ['club', 8, 5, 8, 8, 8]])
+
+        elif name=="goblin":
+            return Creature("Goblin", "evil",
+                          ac=15, hp=7,
+                          initiative_bonus=2,
+                          attack_parameters=[['sword', 4, 2, 6]])
+
+        elif name=="hero":
+            return Creature("hero", "good",
+                            ac=16, hp=18, #bog standard shielded leather-clad level 3.
+                            attack_parameters=[['longsword', 4, 2, 8]])
+
+        elif name=="antijoe":
+            return Creature("antiJoe", "evil",
+                            ac=17, hp=103, #bog standard leather-clad level 3.
+                            attack_parameters=[['shortsword', 2, 2, 6]])
+
+        elif name=="joe":
+            return Creature("Joe", "good",
+                            ac=17, hp=103, #bog standard leather-clad level 3.
+                            attack_parameters=[['shortsword', 2, 2, 6]])
+
+        elif name=="bob":
+            return Creature("Bob", "mad",
+                            ac=10, hp=8,
+                            attack_parameters=[['club', 2, 0, 4],['club', 2, 0, 4]])
+
+        elif name=="allo":
+            return Creature("Allosaurus","evil",
+                       ac=13, hp=51,
+                       attack_parameters=[['claw',6,4,8],['bite',6,4,10,10]])
+
+        elif name=="anky":
+            return Creature("Ankylosaurus",
+                      ac=15, hp=68, alignment='evil',
+                      attack_parameters=[['tail',7,4,6,6,6,6]],
+                      log="CR 3 700 XP")
+
+        elif name=="barbarian":
+            return Creature("Barbarian",
+                             ac=18, hp=66, alignment="good",
+                             attack_parameters=[['greatsword', 4, 1, 6, 6], ['frenzy greatsword', 4, 1, 6, 6]],
+                             log="hp is doubled due to resistance")
+
+        elif name=="druid":
+            return Creature("Twice Brown Bear Druid",
+                         hp=86, ac=11, alignment="good",
+                         attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6, 6]], ability=[0, 0, 0, 0, 3, 0],
+                         sc_ability='wis', buff='cast_barkskin', buff_spells=4,
+                         log='The hp is bear x 2 + druid')
+
+        elif name=="inert":
+            return Creature("inert", "bad",
+                            ac=10, hp=20,
+                            attack_parameters=[['toothpick', 0, 0, 2]])
+
+        elif name=="test":
+            return Creature("Test", "good",
+                            ac=10, hp=100,
+                            attack_parameters=[['club', 2, 0, 4]])
+
+        elif name=="polar":
+            return Creature("polar bear",'evil',
+                        ac=12, hp=42,
+                        attack_parameters=[['bite',7,5,8],['claw',7,5,6,6]])
+
+        elif name=="paradox":
+            return Creature("Paradox", "evil",
+                           ac=10, hp=200,
+                           attack_parameters=[['A', 2, 0, 1]])
+
+        elif name=="commoner":
+            return Creature("Commoner", "good",
+                            ac=10, hp=4,
+                            attack_parameters=[['club', 2, 0, 4]])
+
+        elif name=="giant_rat":
+            return Creature("Giant Rat", "evil",
+                             hp=7, ac=12,
+                             initiative_bonus=2,
+                             attack_parameters=[['bite', 4, 2, 4]])
+
+        elif name=="twibear":
+            return Creature("Twice Brown Bear Druid",
+                           hp=86, ac=11, alignment="good",
+                           attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
+
+        elif name=="barkskin_twibear":
+            return Creature("Druid twice as Barkskinned Brown Bear",
+                                    hp=86, ac=16, alignment="good",
+                                    attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
+
+        elif name=="barkskin_bear":
+            return Creature("Barkskinned Brown Bear", alignment="good",
+                                 hp=34, ac=16,
+                                 attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
+
+        elif name=="giant_toad":
+            return Creature("Giant Toad", "evil",
+                              hp=39, ac=11,
+                              attack_parameters=[['lick', 4, 2, 10, 10]])
+
+        else:
+            return Creature("Commoner", "evil",
+                            ac=10, hp=4,
+                            attack_parameters=[['club', 2, 0, 4]])
+
     def set_level(self, level):
         self.hp=0
         self.hd.crit=1  #Not-RAW first level is always max for PCs, but not monsters.
@@ -361,7 +514,7 @@ class Encounter():
         self.combattants = []
         for chap in lineup:
             if type(chap) is str:
-                chap=preset(chap)
+                chap=Creature.preset(chap)
             chap.arena=self
             self.combattants.append(chap)
 
@@ -380,7 +533,7 @@ class Encounter():
 
     def append(self, newbie):
         if type(newbie) is str:
-            newbie=preset(newbie)
+            newbie=Creature.preset(newbie)
         self.combattants.append(newbie)
         newbie.arena=self
         self.check()
@@ -388,7 +541,7 @@ class Encounter():
     def extend(self, iterable):
         for x in iterable:
             if type(x) is str:
-                x=preset(x)
+                x=Creature.preset(x)
             self.append(x)
 
     def __str__(self):
@@ -407,7 +560,7 @@ class Encounter():
 
     def __add__(self, other):
         if type(other) is str:
-            other=preset(other)
+            other=Creature.preset(other)
         self.extend(other)
 
     def __iter__(self):
@@ -597,161 +750,6 @@ class Encounter():
         if agenda:
             raise Exception(str(cmd) + ' field not found')
         return folk
-
-
-def preset(name):
-    if name=="netsharpshooter":
-        return Creature("net-build bard", "good",
-                    hp=18, ac=18,
-                    initiative_bonus=2,
-                    healing_spells=6, healing_bonus=3, healing_dice=4,
-                    attack_parameters=[['rapier', 4, 2, 8]], alt_attack=['net', 4, 0, 0], level=3)
-    elif name=="bard":
-        return Creature("Bard", "good",
-                          hp=18, ac=18,
-                          healing_spells=6, healing_bonus=3, healing_dice=4,
-                          initiative_bonus=2,
-                          attack_parameters=[['rapier', 4, 2, 8]])
-
-    elif name=="generic_tank":
-        return Creature("generic tank", "good",
-                            hp=20, ac=17,
-                            initiative_bonus=2,
-                            attack_parameters=[['great sword', 5, 3, 6,6]])
-
-    elif name=="mega_tank":
-        return Creature("mega tank", "good",
-                         hp=24, ac=17,
-                         initiative_bonus=2,
-                         attack_parameters=[['great sword', 5, 3, 10]])
-
-    elif name=="a_b_dragon":
-        return Creature("Adult black dragon (minus frightful)", "evil",
-                          ac=19, hp=195, initiative_bonus=2,
-                          attack_parameters=[['1', 11, 6, 10, 10], ['2', 11, 6, 6, 6], ['2', 11, 4, 6, 6]])
-
-    elif name=="y_b_dragon":
-        return Creature("Young black dragon", "evil",
-                          ac=18, hp=127,
-                          initiative_bonus=2,
-                          attack_parameters=[['1', 7, 4, 10, 10, 8], ['2', 7, 4, 6, 6], ['2', 7, 4, 6, 6]])
-
-    elif name=="frost_giant":
-        return Creature("Frost Giant", "evil",
-                           ac=15, hp=138,
-                           attack_parameters=[['club', 9, 6, 12, 12, 12], ['club', 9, 6, 12, 12, 12]])
-
-    elif name=="hill_giant":
-        return Creature("Hill Giant", "evil",
-                          ac=13, hp=105,
-                          attack_parameters=[['club', 8, 5, 8, 8, 8], ['club', 8, 5, 8, 8, 8]])
-
-    elif name=="goblin":
-        return Creature("Goblin", "evil",
-                      ac=15, hp=7,
-                      initiative_bonus=2,
-                      attack_parameters=[['sword', 4, 2, 6]])
-
-    elif name=="hero":
-        return Creature("hero", "good",
-                        ac=16, hp=18, #bog standard shielded leather-clad level 3.
-                        attack_parameters=[['longsword', 4, 2, 8]])
-
-    elif name=="antijoe":
-        return Creature("antiJoe", "evil",
-                        ac=17, hp=103, #bog standard leather-clad level 3.
-                        attack_parameters=[['shortsword', 2, 2, 6]])
-
-    elif name=="joe":
-        return Creature("Joe", "good",
-                        ac=17, hp=103, #bog standard leather-clad level 3.
-                        attack_parameters=[['shortsword', 2, 2, 6]])
-
-    elif name=="bob":
-        return Creature("Bob", "mad",
-                        ac=10, hp=8,
-                        attack_parameters=[['club', 2, 0, 4],['club', 2, 0, 4]])
-
-    elif name=="allo":
-        return Creature("Allosaurus","evil",
-                   ac=13, hp=51,
-                   attack_parameters=[['claw',6,4,8],['bite',6,4,10,10]])
-
-    elif name=="anky":
-        return Creature("Ankylosaurus",
-                  ac=15, hp=68, alignment='evil',
-                  attack_parameters=[['tail',7,4,6,6,6,6]],
-                  log="CR 3 700 XP")
-
-    elif name=="barbarian":
-        return Creature("Barbarian",
-                         ac=18, hp=66, alignment="good",
-                         attack_parameters=[['greatsword', 4, 1, 6, 6], ['frenzy greatsword', 4, 1, 6, 6]],
-                         log="hp is doubled due to resistance")
-
-    elif name=="druid":
-        return Creature("Twice Brown Bear Druid",
-                     hp=86, ac=11, alignment="good",
-                     attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6, 6]], ability=[0, 0, 0, 0, 3, 0],
-                     sc_ability='wis', buff='cast_barkskin', buff_spells=4,
-                     log='The hp is bear x 2 + druid')
-
-    elif name=="inert":
-        return Creature("inert", "bad",
-                        ac=10, hp=20,
-                        attack_parameters=[['toothpick', 0, 0, 2]])
-
-    elif name=="test":
-        return Creature("Test", "good",
-                        ac=10, hp=100,
-                        attack_parameters=[['club', 2, 0, 4]])
-
-    elif name=="polar":
-        return Creature("polar bear",'evil',
-                    ac=12, hp=42,
-                    attack_parameters=[['bite',7,5,8],['claw',7,5,6,6]])
-
-    elif name=="paradox":
-        return Creature("Paradox", "evil",
-                       ac=10, hp=200,
-                       attack_parameters=[['A', 2, 0, 1]])
-
-    elif name=="commoner":
-        return Creature("Commoner", "good",
-                        ac=10, hp=4,
-                        attack_parameters=[['club', 2, 0, 4]])
-
-    elif name=="giant_rat":
-        return Creature("Giant Rat", "evil",
-                         hp=7, ac=12,
-                         initiative_bonus=2,
-                         attack_parameters=[['bite', 4, 2, 4]])
-
-    elif name=="twibear":
-        return Creature("Twice Brown Bear Druid",
-                       hp=86, ac=11, alignment="good",
-                       attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
-
-    elif name=="barkskin_twibear":
-        return Creature("Druid twice as Barkskinned Brown Bear",
-                                hp=86, ac=16, alignment="good",
-                                attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
-
-    elif name=="barkskin_bear":
-        return Creature("Barkskinned Brown Bear", alignment="good",
-                             hp=34, ac=16,
-                             attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
-
-    elif name=="giant_toad":
-        return Creature("Giant Toad", "evil",
-                          hp=39, ac=11,
-                          attack_parameters=[['lick', 4, 2, 10, 10]])
-
-    else:
-        return Creature("Commoner", "evil",
-                        ac=10, hp=4,
-                        attack_parameters=[['club', 2, 0, 4]])
-
 
 ########### MAIN #####
 ##################################################################

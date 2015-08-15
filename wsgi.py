@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 import os
 
+import DnD_Battler
+rounds = 100
+wwe=Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
+
+
+
 def application(environ, start_response):
 
     ctype = 'text/plain'
@@ -23,7 +29,7 @@ def application(environ, start_response):
 </style>
 </head>
 <body>
-<div style="padding: 40px">HELLO WORLD</div>
+<div style="padding: 40px">'''+str(wwe.go_to_war(rounds))+'''</div>
 </body>
 </html>'''
     response_body = response_body.encode('utf-8')
