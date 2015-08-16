@@ -22,7 +22,7 @@ def application(environ, start_response):
             wwe=DnD_Battler.Encounter(*l)
             response_body =str(wwe.go_to_war(rounds))
         except Exception as e:
-            response_body += "\nERROR line 26: "+str(e)
+            response_body = "\nERROR line 26: "+str(e)
 
         status = '200 OK'
         headers = [('Content-type', 'text/plain')]

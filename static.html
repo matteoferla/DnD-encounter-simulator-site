@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>D&D Battle simulator</title>
 <style></style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+<script src="jquery-2.1.4.min.js"></script>
 <script type="text/javascript" >
 if (window.jQuery) {  
     console.log('we have jquery'); 
@@ -29,17 +30,128 @@ xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("["+$("#lineup").val()+"]");
 }
 
+function AddA() {
+	var newbie=$("#def").val();
+	$("#lineup").append('"'+newbie+'", ');
+	}
+
+function AddB() {
+	var keys=["name","alignment","hp","ac","healing_spells","healing_bonus", "healing_dice","initiative_bonus","attack_parameters"];
+	var newbie={};
+	for (var x; x <keys.length; X++) {
+			newbie[x]=$("#"+x).val();
+		}
+	$("#lineup").append('"'+newbie+'", ');
+	}
+
+
 </script>
 </head>
 <body>
-<div style="padding: 40px">
-<textarea id=lineup>"netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar"</textarea>
-<br/>
-<button onclick="duel();">Calculate</button><br/>
-<pre id=out></pre>
-</div>
-<br/>
-<br/>
-
+<table style="border:0px; margin-left:10%; margin-right:10%; margin-top:2%; width:80%; vertical-align:text-top">
+  <tr>
+    <td colspan="2" style="border:0px; padding: 10px; text-align:center"><h1>D&D 5e Battle simulator</h1></td>
+  <tr>
+    <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
+      <h3>Option A: add default combattant</h3>
+      Add a default monster, <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar. <br/>
+      <input type=text id=def style="width:40%">
+      </textarea>
+      <br/>
+      <button onclick="AddA()">Add</button>
+      <br/>
+      <h3>Option B: build combattant</h3>
+      Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default.<br/>
+      <table  class=clear>
+        <tr>
+          <td class=clear>Name: </td>
+          <td class=clear><input type=text id=name style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>Alignment: </td>
+          <td class=clear><input type=text id=alignment style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>HP: </td>
+          <td class=clear><input type=text id=hp style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>AC: </td>
+          <td class=clear><input type=text id=ac style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>Initiative bonus: </td>
+          <td class=clear><input type=text id=initiative_bonus style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>attack_parameters: </td>
+          <td class=clear><input type=text id=attack_parameters title="[['club', 2, 0, 4], ['club', 2, 0, 4]] for a multiattack of of 2 swings with attack bonus of 2 and damage d4+0" style="width:60%" value="[[]]">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>healing_spells: </td>
+          <td class=clear><input type=text id=healing_spells style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>healing_dice: </td>
+          <td class=clear><input type=text id=healing_dice style="width:60%">
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class=clear>healing_bonus: </td>
+          <td class=clear><input type=text id=healing_bonus style="width:60%">
+            </textarea></td>
+        </tr>
+      </table>
+      <br/>
+      <button onclick="AddB()">Add</button>
+      <br/>
+      <h3>Lineup</h3>
+      <div id=lineup></div>
+      <br/>
+      <button onclick="duel();">Calculate</button>
+      <br/>
+      <h2>Simulation Results</h2>
+      <pre id=out>No calculations done.</pre>
+      <h2>More</h2>
+      This is the webserver version of a python script that is a lot more complex and customisable. See <a href="#links">GitHub</a> for more. </td>
+    <td style="border:0px; padding: 20px; width:40%; text-align:justify; text-align-last:left;"><h2>Motives</h2>
+      <p>D&D is an amazing game, but encounters can get tedious when they are not a challenge. Conversely, too much of a challenge leads to a dissapointing series of GM fiats or, worse, a total party kill, a scenario to avoid as it is disappointing for all or worse. Therefore a correct balance is needed. As a result the GM guide has a table that can be used to calculate how hard an encounter is, which is not overly accurate. I have been in too many encounters that on paper should have been deadly, while on the table have been a walk in the park. The reason for this is that a single value cannot represent the strength of a party.</p>
+      <p> Consequently, to address and <a href="#links">analyse</a> this and <a href="#links">to trial new weapons</a>, I wrote a <a href="#links">python script</a> to simulate battles.</p>
+      <h2>Workings</h2>
+      <p>The script empirically simulates a specified number of repeats of an encounter (<i>i.e.</i> 1,000 times) in order to gain the probability of victory of defeat. damage and hp are not the sole factor in determining how an encounter may swing, therefore it may be impossible to predict with calculus, hence the simulation.</p>
+      <h3>Assumptions</h3>
+      <p>There are may factors involved, one of which is strategy, which is encoded here with a set of assumptions.</p>
+      <ul>
+        <li>One targets an alive enemy with lowest hp (tag: "weakest"). Alternatives modes are random or that with highest average damage (tag: "fiercesomest")</li>
+        <li>One heals only when there is no chance of wastage and one heals the most wonded character</li>
+        <li>One uses net-throwing, grappling and other fancy moves only when there is turn economy &mdash; that is, one's team outnumbers the other.</li>
+        <li>If there is turn economy and one is taking all the damage, one dodges.</li>
+        <li>Some minor rules that make no difference</li>
+      </ul>
+      <h3>Gridlessness</h3>
+      <p>This code does not take into account space. That means it assumes tactics on a grid don't matter: this is clearly wrong, but it is a lesser evil that encoding a <a href="#link">lot of behavioral rules</a> that are not obeyed in game &mdash;every group has a muchkin who will dive infront of a wizard's AoE just to kill stuff&mdash; or rules to solve non-trivial situations &mdash;player takes a 30 minute turn. Thanks to the many iterations, machine learning could be adopted making it a function minimisation problem, but it is overkill as no player is such a master strategist.</p>
+      <h3>Spell-list</h3>
+      <p>Spell budgeting troubles players, therefore there is not much spellcasting, bar for a handful of cantrips.</p>
+      </p>
+      <h2 id="links" >External links</h2>
+      <ul>
+        <li><a href=https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py">GitHub repository of the D&D battle python script</a></li>
+        <li> <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator">Discussion on Giant in the Playground about the script</a></li>
+        <li> <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html">An analysis of D&D weapons</a></li>
+        <li> <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html">Analysis of simulated battle results (part 1)</a></li>
+        <li> <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html">Analysis of simulated battle results (part 1)</a></li>
+      </ul></td>
+  </tr>
+</table>
+<div style="padding:20px; text-align:center">
+  <h2>Other links of interest</h2>
+  etc.</div>
 </body>
 </html>
