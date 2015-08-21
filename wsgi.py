@@ -6,7 +6,7 @@ import sys
 def application(environ, start_response):
     sys.stdout =environ['wsgi.errors']
     sys.stderr==environ['wsgi.errors']
-    print("hello\n")
+    print("\nRequest recieved\n")
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
         #from cgi import parse_qs
@@ -29,6 +29,7 @@ def application(environ, start_response):
             print("checkpoint 2\n")
             response_body =str(wwe.go_to_war(rounds))
         except Exception as e:
+            print(e)
             response_body = "\nERROR line 26: "+str(e)
 
         status = '200 OK'
