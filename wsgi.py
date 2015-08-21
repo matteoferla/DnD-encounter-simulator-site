@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 import os
+import sys
+
 
 def application(environ, start_response):
+    sys.stdout =environ['wsgi.errors']
     print("hello")
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
