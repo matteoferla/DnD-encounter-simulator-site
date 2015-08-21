@@ -24,9 +24,9 @@ def application(environ, start_response):
 
             l=json.loads(str(request_body)[2:-1])
             rounds = 100
-            print("checkpoint\n")
+            print("\ncheckpoint\n")
             wwe=DnD_Battler.Encounter(*l)
-            print("checkpoint 2\n")
+            print("\ncheckpoint 2\n")
             response_body =str(wwe.go_to_war(rounds))
         except Exception as e:
             print(e)

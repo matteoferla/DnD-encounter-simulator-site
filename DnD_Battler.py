@@ -509,6 +509,8 @@ class Encounter():
         pass
 
     def __init__(self, *lineup):
+        _debug=1
+        if _debug: print(lineup)
         # self.lineup={x.name:x for x in lineup}
         #self.lineup = list(lineup)  #Classic fuck-up
         self.combattants = []
