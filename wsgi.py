@@ -5,7 +5,8 @@ import sys
 
 def application(environ, start_response):
     sys.stdout =environ['wsgi.errors']
-    print("hello")
+    sys.stderr==environ['wsgi.errors']
+    print("hello\n")
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
         #from cgi import parse_qs
@@ -23,7 +24,9 @@ def application(environ, start_response):
 
             l=json.loads(str(request_body)[2:-1])
             rounds = 100
+            print("checkpoint\n")
             wwe=DnD_Battler.Encounter(*l)
+            print("checkpoint 2\n")
             response_body =str(wwe.go_to_war(rounds))
         except Exception as e:
             response_body = "\nERROR line 26: "+str(e)
