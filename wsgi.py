@@ -30,13 +30,6 @@ def application(environ, start_response):
         start_response(status, headers)
         return [response_body]
 
-    elif environ['REQUEST_METHOD'] == 'GET': and environ['QUERY_STRING'].find('static'):  ##Serve static
-        print(environ['QUERY_STRING'])
-        status = '200 OK'
-        headers = [('Content-type', 'text/plain')]
-        start_response(status, headers)
-        return ["app-root/repo/"+environ['QUERY_STRING']]
-
 
     else:
         ctype = 'text/plain'
