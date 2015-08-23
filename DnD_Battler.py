@@ -5,7 +5,8 @@ __date__ = '25/03/15'
 
 import random
 import math
-
+#N="\n"
+N="<br/>"
 TARGET ='enemy alive weakest'
 #target='enemy alive weakest', target='enemy alive random', target='enemy alive fiersomest'
 
@@ -21,7 +22,7 @@ The nitty-gritty:
 There are three classes he=re: Dice, Character, Encounter.
 Dice accepts bonus plus an int —8 is a d8— or a list of dice —[6,6] is a 2d6— or nothing —d20.
     roll() distinguishes between a d20 and not. d20 crits have to be passed manually.
-Character has a boatload of attributes. Below in the main part there are a few monsters declared.
+Character has a boatload of attributes. It can be initilised with a dictionary or an unpacked one... or a single name matching a preset.
 Encounter includes the following method:
     battle(reset=1) does a single battle (after a reset of values if asked). it calls a few other fuctions such as roll_for_initiative()
     go_to_war(rounds=1000) performs many battles and gives the team results
@@ -104,18 +105,33 @@ class Dice:
 ######################CREATURE######################
 
 class Creature:
-    def __init__(self, name, alignment="good", ac=10, initiative_bonus=None, hp=None, attack_parameters=[['club', 2, 0, 4]],
+    def __init__(self, wildcard, *args,**kwargs):
+        if type(wildcard) is str and not args and not kwargs:
+            self._fill_from_preset(wildcard)
+        elif type(wildcard) is dict:
+            self._fill_from_dict(wildcard)
+            if not args==[] and not kwargs=={}:
+                print("dictionary passed followed by unpacked dictionary error")
+        elif type(wildcard) is Creature:
+            self._initialiase(wildcard, *args,**kwargs)
+        else:
+            print("UNKNOWN COMBATTANT:"+str(wildcard))
+            #raise Exception
+            print("I will not raise an error. I will raise Cthulhu to punish this user errors")
+            self._fill_from_preset("cthulhu")
+
+
+    def _initialiase(self, name, alignment="good", ac=10, initiative_bonus=None, hp=None, attack_parameters=[['club', 2, 0, 4]],
                  alt_attack=['none', 0],
                  healing_spells=0, healing_dice=4, healing_bonus=None, ability=[0, 0, 0, 0, 0, 0], sc_ability='wis',
                  buff='cast_nothing', buff_spells=0, log=None, xp=0, hd=6, level=1, proficiency=2):
-
         self.name = name
-        self.ac = ac
+        self.ac = int(ac)
 
         #build from scratch
         self.proficiency=proficiency
         if isinstance(ability, list):
-            self.ability = {y: x for x, y in zip(ability, ['str', 'dex', 'con', 'wis', 'int', 'cha'])}
+            self.ability = {y: int(x) for x, y in zip(ability, ['str', 'dex', 'con', 'wis', 'int', 'cha'])}
         elif isinstance(ability, dict):
             self.ability = {'str':0, 'dex':0, 'con':0, 'wis':0, 'int':0, 'cha':0}
             self.ability.update(ability)
@@ -123,7 +139,7 @@ class Creature:
             raise NameError('ability can be a list of six, or a incomplete dictionary')
         self.hd=Dice(self.ability['con'],hd, avg=True)
         if hp:
-            self.hp = hp
+            self.hp = int(hp)
             self.starting_hp = self.hp
         else:
             self.set_level(level)
@@ -146,7 +162,7 @@ class Creature:
                            'attack': Dice(alt_attack[1], 20)}  # CURRENTLY ONLY NETTING IS OPTION!
         self.alignment = alignment
         # internal stuff
-        self.tally={'damage':0, 'hits':0, 'misses':0, 'battles':0, 'rounds':0, 'hp': self.hp, 'healing_spells':self.healing_spells}
+        self.tally={'damage':0, 'hits':0, 'dead':0, 'misses':0, 'battles':0, 'rounds':0, 'hp': self.hp, 'healing_spells':self.healing_spells}
         self.copy_index = 1
         self.condition = 'normal'
 
@@ -159,156 +175,168 @@ class Creature:
         self.xp = xp
         self.arena=None
 
-    def preset(name):
+    def _fill_from_dict(self,dictionary):
+        return self._initialiase(**dictionary)
+
+    def _fill_from_preset(self,name):
         if name=="netsharpshooter":
-            return Creature("net-build bard", "good",
+            self._initialiase("netsharpshooter",
+                        alignment="good",
                         hp=18, ac=18,
                         initiative_bonus=2,
                         healing_spells=6, healing_bonus=3, healing_dice=4,
                         attack_parameters=[['rapier', 4, 2, 8]], alt_attack=['net', 4, 0, 0], level=3)
         elif name=="bard":
-            return Creature("Bard", "good",
+            self._initialiase("Bard", "good",
                               hp=18, ac=18,
                               healing_spells=6, healing_bonus=3, healing_dice=4,
                               initiative_bonus=2,
                               attack_parameters=[['rapier', 4, 2, 8]])
 
         elif name=="generic_tank":
-            return Creature("generic tank", "good",
+            self._initialiase("generic tank", "good",
                                 hp=20, ac=17,
                                 initiative_bonus=2,
                                 attack_parameters=[['great sword', 5, 3, 6,6]])
 
         elif name=="mega_tank":
-            return Creature("mega tank", "good",
+            self._initialiase("mega tank", "good",
                              hp=24, ac=17,
                              initiative_bonus=2,
                              attack_parameters=[['great sword', 5, 3, 10]])
 
         elif name=="a_b_dragon":
-            return Creature("Adult black dragon (minus frightful)", "evil",
+            self._initialiase("Adult black dragon (minus frightful)", "evil",
                               ac=19, hp=195, initiative_bonus=2,
                               attack_parameters=[['1', 11, 6, 10, 10], ['2', 11, 6, 6, 6], ['2', 11, 4, 6, 6]])
 
         elif name=="y_b_dragon":
-            return Creature("Young black dragon", "evil",
+            self._initialiase("Young black dragon", "evil",
                               ac=18, hp=127,
                               initiative_bonus=2,
                               attack_parameters=[['1', 7, 4, 10, 10, 8], ['2', 7, 4, 6, 6], ['2', 7, 4, 6, 6]])
 
         elif name=="frost_giant":
-            return Creature("Frost Giant", "evil",
+            self._initialiase("Frost Giant", "evil",
                                ac=15, hp=138,
                                attack_parameters=[['club', 9, 6, 12, 12, 12], ['club', 9, 6, 12, 12, 12]])
 
         elif name=="hill_giant":
-            return Creature("Hill Giant", "evil",
+            self._initialiase("Hill Giant", "evil",
                               ac=13, hp=105,
                               attack_parameters=[['club', 8, 5, 8, 8, 8], ['club', 8, 5, 8, 8, 8]])
 
         elif name=="goblin":
-            return Creature("Goblin", "evil",
+            self._initialiase("Goblin", "evil",
                           ac=15, hp=7,
                           initiative_bonus=2,
                           attack_parameters=[['sword', 4, 2, 6]])
 
         elif name=="hero":
-            return Creature("hero", "good",
+            self._initialiase("hero", "good",
                             ac=16, hp=18, #bog standard shielded leather-clad level 3.
                             attack_parameters=[['longsword', 4, 2, 8]])
 
         elif name=="antijoe":
-            return Creature("antiJoe", "evil",
+            self._initialiase("antiJoe", "evil",
                             ac=17, hp=103, #bog standard leather-clad level 3.
                             attack_parameters=[['shortsword', 2, 2, 6]])
 
         elif name=="joe":
-            return Creature("Joe", "good",
+            self._initialiase("Joe", "good",
                             ac=17, hp=103, #bog standard leather-clad level 3.
                             attack_parameters=[['shortsword', 2, 2, 6]])
 
         elif name=="bob":
-            return Creature("Bob", "mad",
+            self._initialiase("Bob", "mad",
                             ac=10, hp=8,
                             attack_parameters=[['club', 2, 0, 4],['club', 2, 0, 4]])
 
         elif name=="allo":
-            return Creature("Allosaurus","evil",
+            self._initialiase("Allosaurus","evil",
                        ac=13, hp=51,
                        attack_parameters=[['claw',6,4,8],['bite',6,4,10,10]])
 
         elif name=="anky":
-            return Creature("Ankylosaurus",
+            self._initialiase("Ankylosaurus",
                       ac=15, hp=68, alignment='evil',
                       attack_parameters=[['tail',7,4,6,6,6,6]],
                       log="CR 3 700 XP")
 
         elif name=="barbarian":
-            return Creature("Barbarian",
+            self._initialiase("Barbarian",
                              ac=18, hp=66, alignment="good",
                              attack_parameters=[['greatsword', 4, 1, 6, 6], ['frenzy greatsword', 4, 1, 6, 6]],
                              log="hp is doubled due to resistance")
 
         elif name=="druid":
-            return Creature("Twice Brown Bear Druid",
+            self._initialiase("Twice Brown Bear Druid",
                          hp=86, ac=11, alignment="good",
                          attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6, 6]], ability=[0, 0, 0, 0, 3, 0],
                          sc_ability='wis', buff='cast_barkskin', buff_spells=4,
                          log='The hp is bear x 2 + druid')
 
         elif name=="inert":
-            return Creature("inert", "bad",
+            self._initialiase("inert", "bad",
                             ac=10, hp=20,
                             attack_parameters=[['toothpick', 0, 0, 2]])
 
         elif name=="test":
-            return Creature("Test", "good",
+            self._initialiase("Test", "good",
                             ac=10, hp=100,
                             attack_parameters=[['club', 2, 0, 4]])
 
         elif name=="polar":
-            return Creature("polar bear",'evil',
+            self._initialiase("polar bear",'evil',
                         ac=12, hp=42,
                         attack_parameters=[['bite',7,5,8],['claw',7,5,6,6]])
 
         elif name=="paradox":
-            return Creature("Paradox", "evil",
+            self._initialiase("Paradox", "evil",
                            ac=10, hp=200,
                            attack_parameters=[['A', 2, 0, 1]])
 
         elif name=="commoner":
-            return Creature("Commoner", "good",
+            self._initialiase("Commoner", "good",
                             ac=10, hp=4,
                             attack_parameters=[['club', 2, 0, 4]])
 
         elif name=="giant_rat":
-            return Creature("Giant Rat", "evil",
+            self._initialiase("Giant Rat", "evil",
                              hp=7, ac=12,
                              initiative_bonus=2,
                              attack_parameters=[['bite', 4, 2, 4]])
 
         elif name=="twibear":
-            return Creature("Twice Brown Bear Druid",
+            self._initialiase("Twice Brown Bear Druid",
                            hp=86, ac=11, alignment="good",
                            attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="barkskin_twibear":
-            return Creature("Druid twice as Barkskinned Brown Bear",
+            self._initialiase("Druid twice as Barkskinned Brown Bear",
                                     hp=86, ac=16, alignment="good",
                                     attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="barkskin_bear":
-            return Creature("Barkskinned Brown Bear", alignment="good",
+            self._initialiase("Barkskinned Brown Bear", alignment="good",
                                  hp=34, ac=16,
                                  attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="giant_toad":
-            return Creature("Giant Toad", "evil",
+            self._initialiase("Giant Toad", "evil",
                               hp=39, ac=11,
                               attack_parameters=[['lick', 4, 2, 10, 10]])
 
+        elif name=="cthulhu": #PF stats. who cares. you'll die.
+            self._initialiase("Cthulhu", alignment="beyond",
+                              ac=49, hp=774, xp=9830400,
+                              initiative_bonus=15, attack_parameters=[['2 claws', 42, 23, 6, 6, 6, 6],['4 tentacles', 42, 34, 10, 10]],
+                                alt_attack=['none', 0],
+                                healing_spells=99999, healing_dice=1, healing_bonus=30, ability=[56, 21, 45, 31, 36, 34], sc_ability='wis',
+                                 buff='cast_nothing', buff_spells=0, log=None,hd=8, level=36, proficiency=27)
+
         else:
-            return Creature("Commoner", "evil",
+            self._initialiase("Commoner", "evil",
                             ac=10, hp=4,
                             attack_parameters=[['club', 2, 0, 4]])
 
@@ -509,22 +537,17 @@ class Encounter():
         pass
 
     def __init__(self, *lineup):
-        _debug=1
-        if _debug: print(lineup)
+        print(lineup)
         # self.lineup={x.name:x for x in lineup}
         #self.lineup = list(lineup)  #Classic fuck-up
-        self.combattants = []
-        for chap in lineup:
-            if type(chap) is str:
-                chap=Creature.preset(chap)
-            chap.arena=self
-            self.combattants.append(chap)
-
         self.tally={'rounds':0, 'battles': 0, 'perfect': None, 'close':None, 'victories':None}
         self.active=lineup[0]
         self.name = 'Encounter'
-        self.check()
         self.note=''
+        self.combattants = []
+        for chap in lineup:
+            self.append(chap)
+        self.check()
 
     def check(self):
         #TODO Should keep originals if present
@@ -534,16 +557,14 @@ class Encounter():
         self.tally['victories'] = {side: 0 for side in self.sides}
 
     def append(self, newbie):
-        if type(newbie) is str:
-            newbie=Creature.preset(newbie)
+        if not type(newbie) is Creature:
+                newbie=Creature(newbie) #Is this safe??
         self.combattants.append(newbie)
         newbie.arena=self
         self.check()
 
     def extend(self, iterable):
         for x in iterable:
-            if type(x) is str:
-                x=Creature.preset(x)
             self.append(x)
 
     def __str__(self):
@@ -556,6 +577,26 @@ class Encounter():
         string += "-" * 49 + " Combattants  " + "-" * 48 + "\n"
         for fighter in self.combattants: string += str(fighter) + "\n"
         return string
+
+    def json(self):
+        import json
+        jsdic= {"prediction":self.predict(),
+                "battles":self.tally['battles'],
+                "rounds":self.tally['rounds'],
+                "notes": self.note,
+                "team_names": list(self.sides),
+                "team_victories":[self.tally['victories'][x] for x in list(self.sides)],
+                "team_perfects":[self.tally['perfect'][x] for x in list(self.sides)],
+                "team_close": [self.tally['close'][x] for x in list(self.sides)],
+                "combattant_names":[x.name for x in self.combattants],
+                "combattant_alignments":[x.alignment for x in self.combattants],
+                "combattant_damage_avg":[x.tally['damage'] / self.tally['battles'] for x in self.combattants],
+                "combattant_hit_avg":[x.tally['hits'] / self.tally['battles'] for x in self.combattants],
+                "combattant_miss_avg":[x.tally['misses'] / self.tally['battles'] for x in self.combattants],
+                "combattant_rounds":[x.tally['rounds'] / self.tally['rounds'] for x in self.combattants],
+                }
+        return json.dumps(jsdic)
+
 
     def __len__(self):
         return len(self.combattants)
@@ -622,7 +663,7 @@ class Encounter():
                 return a
         if len(self.sides) !=2:
             #print('Calculations unavailable for more than 2 teams')
-            return ""
+            return "Prediction unavailable for more than 2 teams"
         t_ac={x:[] for x in self.sides}
         for character in self:
             t_ac[character.alignment].append(character.ac)
@@ -637,9 +678,9 @@ class Encounter():
                 hp[character.alignment]+= character.starting_hp
         (a,b)=list(self.sides)
         rate={a: hp[a]/damage[b], b: hp[b]/damage[a]}
-        return ('Rough a priori predictions: «WARNING: EXPERIMENTAL SECTION»'+"\n"+
-                '> '+ a + '= expected rounds to survive: ' + str(round(rate[a],2))+'; badly normalised: ' + str(round(rate[a]/(rate[a]+rate[b])*100))+ '%'+"\n"+
-                '> '+ b + '= expected rounds to survive: ' + str(round(rate[b],2))+'; badly normalised: ' + str(round(rate[b]/(rate[a]+rate[b])*100))+ '%'+"\n")
+        return ('Rough a priori predictions:'+N+
+                '> '+ a + '= expected rounds to survive: ' + str(round(rate[a],2))+'; crudely normalised: ' + str(round(rate[a]/(rate[a]+rate[b])*100))+ '%'+N+
+                '> '+ b + '= expected rounds to survive: ' + str(round(rate[b],2))+'; crudely normalised: ' + str(round(rate[b]/(rate[a]+rate[b])*100))+ '%'+N)
 
     def battle(self,reset=1,verbose=1):
         self.tally['battles'] += 1
@@ -656,6 +697,8 @@ class Encounter():
                         self.active=character
                         character.tally['rounds'] += 1
                         character.act(verbose)
+                    else:
+                        character.tally['dead'] +=1
             except Encounter.Victory:
                 break
         #closing up maths
@@ -759,7 +802,7 @@ class Encounter():
 if __name__=="__main__":
     rounds = 100
 
-    wwe=Encounter("netsharpshooter","druid","barbarian","mega_tank","polar", "polar","polar")
+    wwe=Encounter("netsharpshooter","druid","barbarian",{"name":"gonzalez","hp":110},"polar", "polar","polar")
     print(wwe.go_to_war(rounds))
 
     ### KILL PEACEFULLY

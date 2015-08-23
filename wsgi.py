@@ -2,11 +2,9 @@
 import os
 import sys
 
-
 def application(environ, start_response):
     sys.stdout =environ['wsgi.errors']
-    sys.stderr==environ['wsgi.errors']
-    print("\nRequest recieved\n")
+    print("Request recieved")
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
         #from cgi import parse_qs
@@ -15,6 +13,7 @@ def application(environ, start_response):
             request_body = environ['wsgi.input'].read(request_body_size)
         except (TypeError, ValueError):
             request_body = "0"
+            print("No request found")
 
         #parsed_body = parse_qs(request_body)
         #value = parsed_body.get('test_text', [''])[0] #Returns the first value
@@ -24,17 +23,24 @@ def application(environ, start_response):
 
             l=json.loads(str(request_body)[2:-1])
             rounds = 100
-            print("\r\ncheckpoint\r\n"+str(l)+"\r\n")
+            print("Request:")
+            print(request_body)
+            print("parsed as:")
+            print(l)
             wwe=DnD_Battler.Encounter(*l)
-            print("\ncheckpoint 2\n")
-            response_body =str(wwe.go_to_war(rounds))
+            print("Encounter ready:")
+            response_body =wwe.go_to_war(rounds).json()
+            print("Simulation complete")
+            print(response_body)
         except Exception as e:
             print(e)
-            response_body = "\nERROR line 26: "+str(e)
-
+            response_body = "\nERROR: "+str(e)
+        ctype = 'text/plain'
+        response_body = response_body.replace("\n","<br/>")
+        response_body = response_body.encode('utf-8')
         status = '200 OK'
-        headers = [('Content-type', 'text/plain')]
-        start_response(status, headers)
+        response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
+        start_response(status, response_headers)
         return [response_body]
 
 
@@ -48,22 +54,28 @@ def application(environ, start_response):
             response_body = '\n'.join(response_body)
         else:
             ctype = 'text/html'
-            h=open("app-root/repo/static.html")
+            h=open(apppath+"static.html")
             response_body = h.read()
 
         response_body = response_body.encode('utf-8')
-
         status = '200 OK'
         response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
-        #
         start_response(status, response_headers)
-        return [response_body ]
+        return [response_body]
 
 #
 # Below for testing only
 #
 if __name__ == '__main__':
+    place="server"
+    host=8051
+    apppath="app-root/repo/"
+    if place == "local":
+        host=8080
+        apppath=""
+        #The folder static is present both under the root and wsgi/
+
     from wsgiref.simple_server import make_server
-    httpd = make_server('localhost', 8051, application)
+    httpd = make_server('localhost', host, application)
     # Wait for a single request, serve it and quit.
-    httpd.handle_request()
+    httpd.serve_forever()

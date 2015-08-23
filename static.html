@@ -4,34 +4,89 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>D&D Battle simulator</title>
-<style></style>
+<style>
+.res {width=100%; text-align:center;}
+body {font-family: 'Raleway', sans-serif;}
+
+</style>
 <link rel="icon" href="static/favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon"/>
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
-<script src="static/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script src="static/jquery-2.1.4.min.js"></script>-->
 <script type="text/javascript" >
-if (window.jQuery) {  
+
+
+/* if (window.jQuery) {  
     console.log('we have jquery'); 
 } else {
     console.log('we don"t have jquery');
-}
+} */
+
+
 
 
 function duel() {
-document.getElementById("out").innerHTML="Working on it";
+document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
 xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-    document.getElementById("out").innerHTML=xmlhttp.responseText;
-    }
+		$("#status").html("Calculations complete");
+    reply=JSON.parse(xmlhttp.responseText);
+	header={notes: "Notes",
+		rounds:"Total number of rounds fought",
+		battles:"Total number of battles fought" ,
+		prediction:"Rought predictions"}
+	for (k in header) {
+		console.log("#♞"+	k)
+	$("#♞"+	k).html(header[k]+": "+reply[k]);
+		}
+	tmax=100/4;
+	t="<table class=res><thead><tr>"+
+	"<th width='"+ tmax +"%'>Team name</th>"+
+	"<th width='"+ tmax +"%'>Number of victories</th>"+
+	"<th width='"+ tmax +"%'>Number of close calls</th>"+
+	"<th width='"+ tmax +"%'>Number of perfects</th>"+"</tr></thead><tbody>";
+	for (ti=0; ti<reply["team_names"].length; ti++) {
+		t+="<tr><th width='"+ tmax +" %'>"+reply["team_names"][ti]+"</th><td width='"+tmax+"%'>"+
+		reply["team_victories"][ti]+"</td><td width='"+tmax+"%'>"+
+		reply["team_close"][ti]+"</td><td width='"+tmax+"%'>"+
+		reply["team_perfects"][ti]+"</td>"+"</tr>";
+		}
+	t+="</tbody></table>";
+	$("#♞team").html(t);
+	cmax=100/6;	
+	c="<table class=res><thead><tr>"+
+	"<th width='"+ cmax +"%'>Combattant</th>"+
+	"<th width='"+ cmax +"%'>Team</th>"+
+	"<th width='"+ cmax +"%'>avg damage</th>"+
+	"<th width='"+ cmax +"%'>avg hits</th>"+
+	"<th width='"+ cmax +"%'>avg misses</th>"+
+	"<th width='"+ cmax +"%'>avg rounds</th>"+
+	"</tr></thead><tbody>";	
+	for (ci=0; ci<reply["combattant_names"].length; ci++) {
+		c+="<tr><th width='"+ cmax +" %'>"+reply["combattant_names"][ci]+"</th><td width='"+ cmax +" %'>"+
+		reply["combattant_alignments"][ci]+"</td><td width='"+ cmax +" %'>"+
+		reply["combattant_damage_avg"][ci]+"</td><td width='"+ cmax +" %'>"+
+		reply["combattant_hit_avg"][ci]+"</td><td width='"+ cmax +" %'>"+
+		reply["combattant_miss_avg"][ci]+"</td><td width='"+ cmax +" %'>"+
+		reply["combattant_rounds"][ci]+"</td>"+
+		"</tr>";
+		}
+	c+="</table>";
+    $("#♞combattant").html(c);
+
+
+		}
   }
 xmlhttp.open("POST","wsgi.py",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-var lineup=$("#lineup").val().slice(0,-1);
-
-xmlhttp.send("["+$("#lineup").val()+"]");
+var lineup="["+$("#lineup").html().slice(0,-2)+"]";
+xmlhttp.send(lineup);
+console.log(lineup);
 }
 
 function AddA() {
@@ -39,7 +94,9 @@ function AddA() {
 	$("#lineup").append('"'+newbie+'", ');
 	//sessionStorage.setItem('lineup', JSON.stringify(mutball));
 	//JSON.parse(sessionStorage.getItem('ball'))
+	$("#conf").show("slow");
 	$("#def").val("");
+	$("#conf").hide("slow");
 	}
 
 function AddB() {
@@ -50,6 +107,12 @@ function AddB() {
 		}
 	$("#lineup").append('"'+newbie+'", ');
 	}
+	
+	
+$( document ).ready(function () {
+	$("#def").keyup(function(event){if(event.keyCode == 13){AddA();}});
+	$("#conf").hide();
+	}) 
 
 
 </script>
@@ -57,15 +120,14 @@ function AddB() {
 <body>
 <table style="border:0px; margin-left:10%; margin-right:10%; margin-top:2%; width:80%; vertical-align:text-top">
   <tr>
-    <td colspan="2" style="border:0px; padding: 10px; text-align:center"><h1>D&D 5e Battle simulator</h1></td>
+    <td colspan="2" style="border:0px; padding: 10px; text-align:center; vertical-align:central"><div style="bottom:-10px"><img src="static/Owlbear.jpg" width="90" height="74"  alt=""/></div><h1 style="display:inline">&nbsp;D&D 5e Battle simulator</h1></td>
   <tr>
     <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
       <h3>Option A: add default combattant</h3>
       Add a default monster, <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar. <br/>
       <input type=text id=def style="width:40%">
-      </textarea>
-      <br/>
-      <button onclick="AddA()">Add</button>
+      </textarea>&nbsp;
+      <button onclick="AddA()">Add</button> <span id=conf><i class="fa fa-check"></i></span>
       <br/>
       <h3>Option B: build combattant</h3>
       Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default.<br/>
@@ -120,14 +182,25 @@ function AddB() {
       <button onclick="AddB()">Add</button>
       <br/>
       <h3>Lineup</h3>
-      <div id=lineup></div>
+      <div style="padding=5px">
+      <div id=lineup style="padding:10px; border:1px lightgrey; background:gainsboro"></div></div>
       <br/>
       <button onclick="duel();">Calculate</button>
       <br/>
       <h2>Simulation Results</h2>
-      <pre id=out>No calculations done.</pre>
+      <div style="width:100%;">
+      <p id=status></p>
+      <p id="♞battles"></p>
+      <p id="♞rounds"></p>
+      <p id="♞prediction"></p>
+      <p id="♞notes"></p>
+      <p id="♞team"></p>
+      <p id="♞combattant"></p>
+      
+      </div>
       <h2>More</h2>
-      This is the webserver version of a python script that is a lot more complex and customisable. See <a href="#links">GitHub</a> for more. </td>
+      <p>This is the webserver version of a python script that is a lot more complex and customisable. Such as running multiple analyses changing on parameter or running a single button and getting the verbose description of the battle. For example, spells are encoded as method references, so running server-side a user inputted function name might be dangerous.</p>
+      <p>See <a href="#links">GitHub</a> for more. </p></td>
     <td style="border:0px; padding: 20px; width:40%; text-align:justify; text-align-last:left;"><h2>Motives</h2>
       <p>D&D is an amazing game, but encounters can get tedious when they are not a challenge. Conversely, too much of a challenge leads to a dissapointing series of GM fiats or, worse, a total party kill, a scenario to avoid as it is disappointing for all or worse. Therefore a correct balance is needed. As a result the GM guide has a table that can be used to calculate how hard an encounter is, which is not overly accurate. I have been in too many encounters that on paper should have been deadly, while on the table have been a walk in the park. The reason for this is that a single value cannot represent the strength of a party.</p>
       <p> Consequently, to address and <a href="#links">analyse</a> this and <a href="#links">to trial new weapons</a>, I wrote a <a href="#links">python script</a> to simulate battles.</p>
@@ -149,11 +222,11 @@ function AddB() {
       </p>
       <h2 id="links" >External links</h2>
       <ul>
-        <li><a href=https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py">GitHub repository of the D&D battle python script</a></li>
-        <li> <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator">Discussion on Giant in the Playground about the script</a></li>
-        <li> <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html">An analysis of D&D weapons</a></li>
-        <li> <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html">Analysis of simulated battle results (part 1)</a></li>
-        <li> <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html">Analysis of simulated battle results (part 1)</a></li>
+        <li><a href=https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py"><i class="fa fa-github"></i> GitHub repository of the D&D battle python script</a></li>
+        <li> <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator"><i class="fa fa-comment"></i> Discussion on Giant in the Playground about the script</a></li>
+        <li> <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html"><i class="fa fa-calculator"></i> An analysis of D&D weapons</a></li>
+        <li> <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html"><i class="fa fa-bar-chart"></i> Analysis of simulated battle results (part 1)</a></li>
+        <li> <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html"><i class="fa fa-area-chart"></i>  Analysis of simulated battle results (part 1)</a></li>
       </ul></td>
   </tr>
 </table>
