@@ -11,10 +11,24 @@ body {font-family: 'Raleway', sans-serif;}
 </style>
 <link rel="icon" href="static/favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="static/font-awesome-4.4.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<!--<script src="static/jquery-2.1.4.min.js"></script>-->
+<script src="static/tether.min.js"></script>
+<script src="static/drop.min.js"></script>
+<script src="static/tooltip.min.js"></script>
+<link rel="stylesheet" href="static/tooltip-theme-arrows.css" />
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+<script src="static/jquery-2.1.4.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66652240-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <script type="text/javascript" >
 
 
@@ -120,75 +134,78 @@ $( document ).ready(function () {
 <body>
 <table style="border:0px; margin-left:10%; margin-right:10%; margin-top:2%; width:80%; vertical-align:text-top">
   <tr>
-    <td colspan="2" style="border:0px; padding: 10px; text-align:center; vertical-align:central"><div style="bottom:-10px"><img src="static/Owlbear.jpg" width="90" height="74"  alt=""/></div><h1 style="display:inline">&nbsp;D&D 5e Battle simulator</h1></td>
+    <td colspan="2" style="border:0px; padding: 10px; text-align:center; vertical-align:central">
+    <table style="border:0px; width:100%"><tr><td  style="border:0px; text-align:right"><img src="static/Owlbear.jpg" width="90" height="74"  alt=""/></td><td  style="border:0px"><h1 style="display:inline">D&D 5e Battle simulator</h1></td><td  style="border:0px width:20%"><iframe src="https://ghbtns.com/github-btn.html?user=matteoferla&repo=tangents&type=star&count=true&size=small" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></td></tr></table>
+    
+    </td>
   <tr>
     <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
       <h3>Option A: add default combattant</h3>
-      Add a default monster, <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar. <br/>
+      Add a default monster, <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
       <input type=text id=def style="width:40%">
       </textarea>&nbsp;
       <button onclick="AddA()">Add</button> <span id=conf><i class="fa fa-check"></i></span>
       <br/>
       <h3>Option B: build combattant</h3>
-      Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default.<br/>
+      Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default. Apart from the name, all these parameters are optional (default is commoner).<br/>
       <table  class=clear>
         <tr>
           <td class=clear>Name: </td>
           <td class=clear><input type=text id=name style="width:60%">
-            </textarea></td>
+            </textarea> <i class="fa fa-question" data-tooltip="The name of the creature. This is used for the summary and identical names can be used."></i> </td>
         </tr>
         <tr>
           <td class=clear>Alignment: </td>
           <td class=clear><input type=text id=alignment style="width:60%">
-            </textarea></td>
+            </textarea> <i class="fa fa-question" data-tooltip="The team the creature works for."></i> </td>
         </tr>
         <tr>
           <td class=clear>HP: </td>
           <td class=clear><input type=text id=hp style="width:60%">
-            </textarea></td>
+            </textarea> <i class="fa fa-question" data-tooltip="hit points"></i> </td>
         </tr>
         <tr>
           <td class=clear>AC: </td>
           <td class=clear><input type=text id=ac style="width:60%">
-            </textarea></td>
+            </textarea> <i class="fa fa-question" data-tooltip="armour class"></i> </td>
         </tr>
         <tr>
           <td class=clear>Initiative bonus: </td>
           <td class=clear><input type=text id=initiative_bonus style="width:60%">
-            </textarea></td>
+            </textarea> <i class="fa fa-question" data-tooltip="initiative bonus"></i> </td>
         </tr>
         <tr>
-          <td class=clear>attack_parameters: </td>
-          <td class=clear><input type=text id=attack_parameters title="[['club', 2, 0, 4], ['club', 2, 0, 4]] for a multiattack of of 2 swings with attack bonus of 2 and damage d4+0" style="width:60%" value="[[]]">
-            </textarea></td>
+          <td class=clear>attack parameters: </td>
+          <td class=clear><input type=text id=attack_parameters style="width:60%" value="[[]]">
+            </textarea> <i class="fa fa-question" data-tooltip="This is a tad complicated, sorry. Technically it is a list of list. It is a series of values between square brackets between square brakets, <i>e.g.</i> [['club', 2, 0, 4], ['club', 2, 0, 4]]. Each square bracket block (list) denoted a part of an attack, namely a single attack will have only one, <i>e.g.</i> [['sword of a thousand truths', 7, 5, 16]], while a multiattack of two will have two as in the first example. The first element is a name, which is useless here as narration is disabled. The second is the attack bonus, the third is the damage bonus and the following are the dice. So [['Batleth',2,0,8,8]] is a +2, 2d8 and a [['flaming greatsword',3,1,6,6,4]] is a +3 2d6+d4+1" data-tooltip-position="bottom middle"></i> </td>
         </tr>
         <tr>
-          <td class=clear>healing_spells: </td>
+          <td class=clear>Number of healing spells: </td>
           <td class=clear><input type=text id=healing_spells style="width:60%">
-            </textarea></td>
+            </textarea><i class="fa fa-question" data-tooltip="Number of healing word spells (cantrip, only)"></i> </td>
         </tr>
         <tr>
-          <td class=clear>healing_dice: </td>
+          <td class=clear>healing dice: </td>
           <td class=clear><input type=text id=healing_dice style="width:60%">
-            </textarea></td>
+            </textarea><i class="fa fa-question" data-tooltip="number without the d. d4 is the default."></i> </td>
         </tr>
         <tr>
-          <td class=clear>healing_bonus: </td>
+          <td class=clear>healing bonus: </td>
           <td class=clear><input type=text id=healing_bonus style="width:60%">
-            </textarea></td>
+            </textarea><i class="fa fa-question" data-tooltip="the bonus to your heal"></i> </td>
         </tr>
       </table>
       <br/>
       <button onclick="AddB()">Add</button>
       <br/>
       <h3>Lineup</h3>
-      <div style="padding=5px">
-      <div id=lineup style="padding:10px; border:1px lightgrey; background:gainsboro"></div></div>
+      <div style="padding:5px">
+      <div id=lineup style="padding:10px; ; height:2em; border:1px lightgrey; background:gainsboro"></div></div>
       <br/>
       <button onclick="duel();">Calculate</button>
       <br/>
       <h2>Simulation Results</h2>
-      <div style="width:100%;">
+      <div style="width:100%; max-width:100%">
       <p id=status></p>
       <p id="OUT_battles"></p>
       <p id="OUT_rounds"></p>
@@ -199,7 +216,7 @@ $( document ).ready(function () {
       
       </div>
       <h2>More</h2>
-      <p>This is the webserver version of a python script that is a lot more complex and customisable. Such as running multiple analyses changing on parameter or running a single button and getting the verbose description of the battle. For example, spells are encoded as method references, so running server-side a user inputted function name might be dangerous.</p>
+      <p>This is the webserver version of a python script that is a lot more complex and customisable, such as running multiple analyses changing on parameter or running a single button and getting the verbose description of the battle. For technical reasons, the simulations are limited to 1,000 battles (encounters) and no custom spells are allowed as spells are encoded as method references which might lead to vulnerability.</p>
       <p>See <a href="#links">GitHub</a> for more. </p></td>
     <td style="border:0px; padding: 20px; width:40%; text-align:justify; text-align-last:left;"><h2>Motives</h2>
       <p>D&D is an amazing game, but encounters can get tedious when they are not a challenge. Conversely, too much of a challenge leads to a dissapointing series of GM fiats or, worse, a total party kill, a scenario to avoid as it is disappointing for all or worse. Therefore a correct balance is needed. As a result the GM guide has a table that can be used to calculate how hard an encounter is, which is not overly accurate. I have been in too many encounters that on paper should have been deadly, while on the table have been a walk in the park. The reason for this is that a single value cannot represent the strength of a party.</p>
@@ -221,17 +238,15 @@ $( document ).ready(function () {
       <p>Spell budgeting troubles players, therefore there is not much spellcasting, bar for a handful of cantrips.</p>
       </p>
       <h2 id="links" >External links</h2>
-      <ul>
-        <li><a href=https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py"><i class="fa fa-github"></i> GitHub repository of the D&D battle python script</a></li>
-        <li> <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator"><i class="fa fa-comment"></i> Discussion on Giant in the Playground about the script</a></li>
-        <li> <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html"><i class="fa fa-calculator"></i> An analysis of D&D weapons</a></li>
-        <li> <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html"><i class="fa fa-bar-chart"></i> Analysis of simulated battle results (part 1)</a></li>
-        <li> <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html"><i class="fa fa-area-chart"></i>  Analysis of simulated battle results (part 1)</a></li>
+      <ul class="fa-ul">
+        <li><i class="fa-li fa fa-github"></i> <a href="https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py">GitHub repository of the D&D battle python script</a></li>
+        <li><i class="fa-li fa fa-comment"></i>  <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator">Discussion on Giant in the Playground about the script</a></li>
+        <li><i class="fa-li fa fa-calculator"></i>  <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html">An analysis of D&D weapons</a></li>
+        <li><i class="fa-li fa fa-bar-chart"></i>  <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html">Analysis of simulated battle results (part 1)</a></li>
+        <li><i class="fa-li fa fa-area-chart"></i>   <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html">Analysis of simulated battle results (part 2)</a></li>
+        <li><i class="fa-li fa fa-envelope-o"></i> <a href="http://www.google.com/recaptcha/mailhide/d?k\07501A1LVjk_ZjQp5eXQYtJaz9w\75\75\46c\0754LB277Fx17YAz2GbS4xIZ1YhoXQGDzHTY0a8wvL7WNQ\075">Author's email</a></li>
       </ul></td>
   </tr>
 </table>
-<div style="padding:20px; text-align:center">
-  <h2>Other links of interest</h2>
-  etc.</div>
 </body>
 </html>

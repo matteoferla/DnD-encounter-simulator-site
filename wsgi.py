@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-place="server"
+place="local"
 host=8051
 apppath="app-root/repo/"
 if place == "local":
@@ -29,7 +29,7 @@ def application(environ, start_response):
             import json, DnD_Battler
 
             l=json.loads(str(request_body)[2:-1])
-            rounds = 100
+            rounds = 1000
             print("Request:")
             print(request_body)
             print("parsed as:")
