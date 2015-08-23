@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 import os
 import sys
+place="server"
+host=8051
+apppath="app-root/repo/"
+if place == "local":
+    host=8080
+    apppath=""
+    #The folder static is present both under the root and wsgi/
 
 def application(environ, start_response):
     sys.stdout =environ['wsgi.errors']
@@ -67,13 +74,6 @@ def application(environ, start_response):
 # Below for testing only
 #
 if __name__ == '__main__':
-    place="server"
-    host=8051
-    apppath="app-root/repo/"
-    if place == "local":
-        host=8080
-        apppath=""
-        #The folder static is present both under the root and wsgi/
 
     from wsgiref.simple_server import make_server
     httpd = make_server('localhost', host, application)
