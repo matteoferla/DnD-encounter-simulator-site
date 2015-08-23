@@ -41,8 +41,8 @@ xmlhttp.onreadystatechange=function()
 		battles:"Total number of battles fought" ,
 		prediction:"Rought predictions"}
 	for (k in header) {
-		console.log("#♞"+	k)
-	$("#♞"+	k).html(header[k]+": "+reply[k]);
+		console.log("#OUT_"+	k)
+	$("#OUT_"+	k).html(header[k]+": "+reply[k]);
 		}
 	tmax=100/4;
 	t="<table class=res><thead><tr>"+
@@ -57,7 +57,7 @@ xmlhttp.onreadystatechange=function()
 		reply["team_perfects"][ti]+"</td>"+"</tr>";
 		}
 	t+="</tbody></table>";
-	$("#♞team").html(t);
+	$("#OUT_team").html(t);
 	cmax=100/6;	
 	c="<table class=res><thead><tr>"+
 	"<th width='"+ cmax +"%'>Combattant</th>"+
@@ -77,7 +77,7 @@ xmlhttp.onreadystatechange=function()
 		"</tr>";
 		}
 	c+="</table>";
-    $("#♞combattant").html(c);
+    $("#OUT_combattant").html(c);
 
 
 		}
@@ -190,12 +190,12 @@ $( document ).ready(function () {
       <h2>Simulation Results</h2>
       <div style="width:100%;">
       <p id=status></p>
-      <p id="♞battles"></p>
-      <p id="♞rounds"></p>
-      <p id="♞prediction"></p>
-      <p id="♞notes"></p>
-      <p id="♞team"></p>
-      <p id="♞combattant"></p>
+      <p id="OUT_battles"></p>
+      <p id="OUT_rounds"></p>
+      <p id="OUT_prediction"></p>
+      <p id="OUT_notes"></p>
+      <p id="OUT_team"></p>
+      <p id="OUT_combattant"></p>
       
       </div>
       <h2>More</h2>
