@@ -118,7 +118,8 @@ class Creature:
             beastiary={}
             for line in r:
                 beast={h:line[i] for i,h in enumerate(headers) if line[i]}
-                beastiary[beast['name']]=beast
+                if 'name' in beast:
+                    beastiary[beast['name']]=beast
             return beastiary
         except:
             print('Missing beastiary in'+path)
