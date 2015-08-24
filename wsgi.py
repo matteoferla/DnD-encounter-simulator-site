@@ -64,10 +64,12 @@ def application(environ, start_response):
             ctype = 'text/html'
             h=open(apppath+"static.html")
             response_body = h.read()
-            x=''
+            x='<!--serverside values-->'
             DnD.Creature._beastiary(apppath+'beastiary.csv')
+            print(DnD.Creature.beastiary)
             for beast in DnD.Creature.beastiary:
                 x+="<option value='"+beast.name+"'>"+beast.name+"</option>"
+                print(beast.name)
             response_body=response_body.replace("<!--LABEL-->",x)
 
         response_body = response_body.encode('utf-8')
