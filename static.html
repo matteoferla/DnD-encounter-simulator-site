@@ -40,7 +40,16 @@ button {width:100px; text-align:justify}
 } */
 
 
-
+function duel_t() {
+	$.ajax({
+  method: "POST",
+  url: "some.php",
+  data: { name: "John", location: "Boston" }
+})
+  .done(function( msg ) {
+    alert( "Data Saved: " + msg );
+  });
+	}
 
 function duel() {
 	
@@ -53,6 +62,7 @@ xmlhttp.onreadystatechange=function()
     {
 		$("#status").html("Calculations complete");
     reply=JSON.parse(xmlhttp.responseText);
+	console.log(reply);
 	header={notes: "Notes",
 		rounds:"Total number of rounds fought",
 		battles:"Total number of battles fought" ,
