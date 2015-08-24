@@ -7,6 +7,7 @@
 <style>
 .res {width=100%; text-align:center;}
 body {font-family: 'Raleway', sans-serif;}
+button {width:100px; text-align:justify}
 
 </style>
 <link rel="icon" href="static/favicon.ico" type="image/x-icon"/>
@@ -23,7 +24,7 @@ body {font-family: 'Raleway', sans-serif;}
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-66652240-1', 'auto');
   ga('send', 'pageview');
@@ -122,14 +123,29 @@ function AddB() {
 	$("#confB").hide("slow");
 	}
 
-function AddC() {
+function AddC_diused() {
 	var keys=["name","alignment","hp","ac","healing_spells","healing_bonus", "healing_dice","initiative_bonus","attack_parameters"];
 	var newbie={};
-	for (var x; x <keys.length; X++) {
-			newbie[x]=$("#"+x).val();
-			$("#"+x).val("");
+	for (var x=0; x <keys.length; x++) {
+		console.log(x);
+			newbie[keys[x]]=$("#"+keys[x]).val();
+			console.log("#"+keys[x])
+			$("#"+keys[x]).val("");
 		}
-	$("#lineup").append('"'+newbie+'", ');
+	$("#lineup").append('"'+JSON.stringify(newbie)+'", ');
+	$("#confC").show("slow");
+	$("#confC").hide("slow");
+	}
+	
+function AddC() {
+		var newbie={};
+	$("#table").find('input').each(function(index, element) {
+        key=$(this).attr('id');
+		var v=$("#"+key).val();
+		if (!!v) {newbie[key]=$("#"+key).val();}
+			$("#"+key).val("");
+    });
+	$("#lineup").append('"'+JSON.stringify(newbie)+'", ');
 	$("#confC").show("slow");
 	$("#confC").hide("slow");
 	}
@@ -156,20 +172,25 @@ $( document ).ready(function () {
     <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
     <h3>Option A: add default combattant from list</h3>
     Pick a default creature.<br/>
-    <select id=drop><option value="cthulhu">Select creature</option><!--LABEL--></select><button onclick="AddA()">Add</button> <span id=confA><i class="fa fa-check"></i></span>
+    <select id=drop><option value="cthulhu">Select creature</option><!--LABEL--></select><button onclick="AddA()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confA><i class="fa fa-check"></i></span>
       <h3>Option B: add default combattant by name</h3>
-      Add a default creature, either from the list above or from the Creature()._fill_from_preset(name) method, which I have not phased out. <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
+      Add a default creature, either from the list above or from the Creature()._fill_from_preset(name) method, which I have not phased out yet. <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, netsharpshooter, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
       <input type=text id=def style="width:40%">
       </textarea>&nbsp;
-      <button onclick="AddB()">Add</button> <span id=confB><i class="fa fa-check"></i></span>
+      <button onclick="AddB()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confB><i class="fa fa-check"></i></span>
       <br/>
       <h3>Option C: build combattant</h3>
       Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default. Apart from the name, all these parameters are optional (default is commoner).<br/>
-      <table  class=clear>
+      <table  class=clear id=table>
         <tr>
           <td class=clear>Name: </td>
           <td class=clear><input type=text id=name style="width:60%">
             </textarea> <i class="fa fa-question" data-tooltip="The name of the creature. This is used for the summary and identical names can be used."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Base creature: </td>
+          <td class=clear><input type=text id=base style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Add a name to modify a preset creature"></i> </td>
         </tr>
         <tr>
           <td class=clear>Alignment: </td>
@@ -193,7 +214,7 @@ $( document ).ready(function () {
         </tr>
         <tr>
           <td class=clear>attack parameters: </td>
-          <td class=clear><input type=text id=attack_parameters style="width:60%" value="[[]]">
+          <td class=clear><input type=text id=attack_parameters style="width:60%">
             </textarea> <i class="fa fa-question" data-tooltip="This is a tad complicated, sorry. Technically it is a list of list. It is a series of values between square brackets between square brakets, <i>e.g.</i> [['club', 2, 0, 4], ['club', 2, 0, 4]]. Each square bracket block (list) denoted a part of an attack, namely a single attack will have only one, <i>e.g.</i> [['sword of a thousand truths', 7, 5, 16]], while a multiattack of two will have two as in the first example. The first element is a name, which is useless here as narration is disabled. The second is the attack bonus, the third is the damage bonus and the following are the dice. So [['Batleth',2,0,8,8]] is a +2, 2d8 and a [['flaming greatsword',3,1,6,6,4]] is a +3 2d6+d4+1" data-tooltip-position="bottom middle"></i> </td>
         </tr>
         <tr>
@@ -211,15 +232,45 @@ $( document ).ready(function () {
           <td class=clear><input type=text id=healing_bonus style="width:60%">
             </textarea><i class="fa fa-question" data-tooltip="the bonus to your heal"></i> </td>
         </tr>
+        <tr>
+          <td class=clear>Str: </td>
+          <td class=clear><input type=text id=str style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Strength ability, not bonus."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Dex: </td>
+          <td class=clear><input type=text id=dex style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Dex ability, not bonus."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Con: </td>
+          <td class=clear><input type=text id=con style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Constitution ability, not bonus."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Int: </td>
+          <td class=clear><input type=text id=int style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Intelligence ability, not bonus."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Wis: </td>
+          <td class=clear><input type=text id=wis style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Wisdom ability, not bonus."></i> </td>
+        </tr>
+        <tr>
+          <td class=clear>Cha: </td>
+          <td class=clear><input type=text id=cha style="width:60%">
+            </textarea><i class="fa fa-question" data-tooltip="Charisma ability, not bonus."></i> </td>
+        </tr>
       </table>
       <br/>
-      <button onclick="AddC()">Add</button> <span id=confC><i class="fa fa-check"></i></span>
+      <button onclick="AddC()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confC><i class="fa fa-check"></i></span>
       <br/>
       <h3>Lineup</h3>
       <div style="padding:5px">
       <div id=lineup style="padding:10px; ; height:2em; border:1px lightgrey; background:gainsboro"></div></div>
       <br/>
-      <button onclick="duel();">Calculate</button>
+      <button onclick="duel();"><i class="fa fa-bolt"></i> Calculate</button><button onclick='$("#lineup").html("");'><i class="fa fa-trash-o"></i> Clear</button>
       <br/>
       <h2>Simulation Results</h2>
       <div style="width:100%; max-width:100%">

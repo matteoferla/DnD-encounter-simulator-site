@@ -66,7 +66,7 @@ def application(environ, start_response):
             response_body = h.read()
             x='<!--serverside values-->'
             DnD.Creature.beastiary=DnD.Creature._beastiary(apppath+'beastiary.csv')
-            print(DnD.Creature.beastiary)
+            #print(DnD.Creature.beastiary)
             for beast in DnD.Creature.beastiary:
                 name=DnD.Creature.beastiary[beast]['name']
                 x+='<option value="'+name+'">'+name+'</option>'
