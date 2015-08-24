@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DnD_Battler.py" afterPath="$PROJECT_DIR$/DnD_Battler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static.html" afterPath="$PROJECT_DIR$/static.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />

@@ -43,7 +43,7 @@ button {width:100px; text-align:justify}
 function duel_t() {
 	$.ajax({
   method: "POST",
-  url: "some.php",
+  url: "",
   data: []
 })
   .done(function( msg ) {
@@ -51,17 +51,17 @@ function duel_t() {
   });
 	}
 
-function duel() {
-console.log(sessionStorage.getItem('lineup'));
-document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
-xmlhttp=new XMLHttpRequest();
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-		$("#status").html("Calculations complete");
-		console.log(xmlhttp.responseText);
-    reply=JSON.parse(xmlhttp.responseText);
+
+function Output (text) {
+	$("#OUT_battles").html("");
+	$("#OUT_rounds").html("");
+	$("#OUT_prediction").html("");
+	$("#OUT_notes").html("");
+	$("#OUT_team").html("");
+	$("#OUT_combattant").html("");
+	$("#status").html("Calculations complete");
+		console.log(text);
+    reply=JSON.parse(text);
 	
 	header={notes: "Notes",
 		rounds:"Total number of rounds fought",
@@ -105,9 +105,16 @@ xmlhttp.onreadystatechange=function()
 		}
 	c+="</table>";
     $("#OUT_combattant").html(c);
+	}
 
-
-		}
+function duel() {
+console.log(sessionStorage.getItem('lineup'));
+document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {Output(xmlhttp.responseText);}
   }
 xmlhttp.open("POST","wsgi.py",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -173,7 +180,7 @@ $( document ).ready(function () {
   <tr>
     <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
     <h3>Option A: add default combattant from list</h3>
-    Pick a default creature.<br/>
+    Pick a default creature, these are present in a csv file &mdash; the original xlsx can be found on my GitHub page.<br/>
     <select id=drop><option value="cthulhu">Select creature</option><!--LABEL--></select><button onclick="AddA()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confA><i class="fa fa-check"></i></span>
       <h3>Option B: add default combattant by name</h3>
       Add a default creature, either from the list above or from the Creature()._fill_from_preset(name) method, which I have not phased out yet. <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, netsharpshooter, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
@@ -311,6 +318,7 @@ $( document ).ready(function () {
       <ul class="fa-ul">
       <li><i class="fa-li fa fa-pencil"></i> Add more fields for custom creatures (the sole reason why there are not more is the layout needs changing).</li>
       <li><i class="fa-li fa fa-database"></i> Add more creatures to the excel sheet, especially PCs.</li>
+      <li><i class="fa-li fa fa-database"></i> Allow user submissions.</li>
       <li><i class="fa-li fa fa-search"></i> Get creature info on line-up from server and add option to delete specific ones.</li>
       <li><i class="fa-li fa fa-bug"></i> Double check with the PHB and MM some parts (TODO comments in code).</li>
       <li><i class="fa-li fa fa-rocket"></i> Introduce machine learning to the code, so that it accepts more spells and can work on a grid.</li>
@@ -322,7 +330,7 @@ $( document ).ready(function () {
         <li><i class="fa-li fa fa-calculator"></i>  <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html">An analysis of D&D weapons</a></li>
         <li><i class="fa-li fa fa-bar-chart"></i>  <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html">Analysis of simulated battle results (part 1)</a></li>
         <li><i class="fa-li fa fa-area-chart"></i>   <a href="http://squidonius.blogspot.co.nz/2015/04/d-battle-simulator-part-2.html">Analysis of simulated battle results (part 2)</a></li>
-        <li><i class="fa-li fa fa-envelope-o"></i> <a href="http://www.google.com/recaptcha/mailhide/d?k\07501A1LVjk_ZjQp5eXQYtJaz9w\75\75\46c\0754LB277Fx17YAz2GbS4xIZ1YhoXQGDzHTY0a8wvL7WNQ\075">Author's email</a></li>
+        <li><i class="fa-li fa fa-envelope-o"></i> <a href="http://www.google.com/recaptcha/mailhide/d?k\07501A1LVjk_ZjQp5eXQYtJaz9w\75\75\46c\0754LB277Fx17YAz2GbS4xIZ1YhoXQGDzHTY0a8wvL7WNQ\075">Author's email</a>: suggestions welcome</li>
       </ul></td>
   </tr>
 </table>
