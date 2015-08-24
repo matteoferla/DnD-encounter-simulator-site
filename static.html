@@ -100,9 +100,9 @@ function Output (text) {
 	"<th width='"+ tmax +"%'>Number of perfects</th>"+"</tr></thead><tbody>";
 	for (ti=0; ti<reply["team_names"].length; ti++) {
 		t+="<tr><th width='"+ tmax +" %'>"+reply["team_names"][ti]+"</th><td width='"+tmax+"%'>"+
-		reply["team_victories"][ti].toFixed(2)+"</td><td width='"+tmax+"%'>"+
-		reply["team_close"][ti].toFixed(2)+"</td><td width='"+tmax+"%'>"+
-		reply["team_perfects"][ti].toFixed(2)+"</td>"+"</tr>";
+		reply["team_victories"][ti]+"</td><td width='"+tmax+"%'>"+
+		reply["team_close"][ti]+"</td><td width='"+tmax+"%'>"+
+		reply["team_perfects"][ti]+"</td>"+"</tr>";
 		}
 	t+="</tbody></table>";
 	$("#OUT_team").html(t);
@@ -117,16 +117,16 @@ function Output (text) {
 	"</tr></thead><tbody>";	
 	for (ci=0; ci<reply["combattant_names"].length; ci++) {
 		c+="<tr><th width='"+ cmax +" %'>"+reply["combattant_names"][ci]+"</th><td width='"+ cmax +" %'>"+
-		reply["combattant_alignments"][ci].toFixed(2)+"</td><td width='"+ cmax +" %'>"+
-		reply["combattant_damage_avg"][ci].toFixed(2)+"</td><td width='"+ cmax +" %'>"+
-		reply["combattant_hit_avg"][ci].toFixed(2)+"</td><td width='"+ cmax +" %'>"+
-		reply["combattant_miss_avg"][ci].toFixed(2)+"</td><td width='"+ cmax +" %'>"+
-		reply["combattant_rounds"][ci].toFixed(2)+"</td>"+
+		parseFloat(reply["combattant_alignments"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
+		parseFloat(reply["combattant_damage_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
+		parseFloat(reply["combattant_hit_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
+		parseFloat(reply["combattant_miss_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
+		parseFloat(reply["combattant_rounds"][ci]).toFixed(2)+"</td>"+
 		"</tr>";
 		}
 	c+="</table>";
     $("#OUT_combattant").html(c);
-	$("#OUT_sample").html(reply['sample']);
+	$("#OUT_sample").html(reply['sample_encounter']);
 	}
 
 function duel() {
