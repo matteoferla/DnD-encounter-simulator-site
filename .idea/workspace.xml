@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DnD_Battler.py" afterPath="$PROJECT_DIR$/DnD_Battler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
@@ -74,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.48235294" vertical-offset="1009" max-vertical-offset="1598">
-              <caret line="69" column="114" selection-start-line="69" selection-start-column="114" selection-end-line="69" selection-end-column="114" />
+              <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -838,7 +837,7 @@
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48235294" vertical-offset="1009" max-vertical-offset="1598">
-          <caret line="69" column="114" selection-start-line="69" selection-start-column="114" selection-end-line="69" selection-end-column="114" />
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>
