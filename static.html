@@ -43,6 +43,8 @@ button {width:100px; text-align:justify}
 
 
 function duel() {
+	
+console.log(sessionStorage.getItem('lineup'));
 document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
 xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
@@ -99,16 +101,19 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","wsgi.py",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-var lineup="["+$("#lineup").html().slice(0,-2)+"]";
-xmlhttp.send(lineup);
-console.log(lineup);
+xmlhttp.send(sessionStorage.getItem('lineup'));
 }
+
+function Add(newbie) {
+	var lineup=JSON.parse(sessionStorage.getItem('lineup'))
+	lineup.push(newbie);
+	sessionStorage.setItem('lineup', JSON.stringify(lineup));
+	}
 
 function AddA() {
 	var newbie=$("#drop").val();
 	$("#lineup").append('"'+newbie+'", ');
-	//sessionStorage.setItem('lineup', JSON.stringify(mutball));
-	//JSON.parse(sessionStorage.getItem('ball'))
+	Add(newbie);
 	$("#confA").show("slow");
 	$("#confA").hide("slow");
 	}
@@ -116,25 +121,10 @@ function AddA() {
 function AddB() {
 	var newbie=$("#def").val();
 	$("#lineup").append('"'+newbie+'", ');
-	//sessionStorage.setItem('lineup', JSON.stringify(mutball));
-	//JSON.parse(sessionStorage.getItem('ball'))
+	Add(newbie);
 	$("#confB").show("slow");
 	$("#def").val("");
 	$("#confB").hide("slow");
-	}
-
-function AddC_diused() {
-	var keys=["name","alignment","hp","ac","healing_spells","healing_bonus", "healing_dice","initiative_bonus","attack_parameters"];
-	var newbie={};
-	for (var x=0; x <keys.length; x++) {
-		console.log(x);
-			newbie[keys[x]]=$("#"+keys[x]).val();
-			console.log("#"+keys[x])
-			$("#"+keys[x]).val("");
-		}
-	$("#lineup").append('"'+JSON.stringify(newbie)+'", ');
-	$("#confC").show("slow");
-	$("#confC").hide("slow");
 	}
 	
 function AddC() {
@@ -146,6 +136,7 @@ function AddC() {
 			$("#"+key).val("");
     });
 	$("#lineup").append('"'+JSON.stringify(newbie)+'", ');
+	Add(newbie);
 	$("#confC").show("slow");
 	$("#confC").hide("slow");
 	}
@@ -156,6 +147,7 @@ $( document ).ready(function () {
 	$("#confA").hide();
 	$("#confB").hide();
 	$("#confC").hide();
+	sessionStorage.setItem('lineup', JSON.stringify([]));
 	}) 
 
 
