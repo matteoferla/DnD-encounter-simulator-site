@@ -117,7 +117,7 @@ function Output (text) {
 	"</tr></thead><tbody>";	
 	for (ci=0; ci<reply["combattant_names"].length; ci++) {
 		c+="<tr><th width='"+ cmax +" %'>"+reply["combattant_names"][ci]+"</th><td width='"+ cmax +" %'>"+
-		parseFloat(reply["combattant_alignments"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
+		reply["combattant_alignments"][ci]+"</td><td width='"+ cmax +" %'>"+
 		parseFloat(reply["combattant_damage_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
 		parseFloat(reply["combattant_hit_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
 		parseFloat(reply["combattant_miss_avg"][ci]).toFixed(2)+"</td><td width='"+ cmax +" %'>"+
