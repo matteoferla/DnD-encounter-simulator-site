@@ -68,8 +68,9 @@ def application(environ, start_response):
             DnD.Creature.beastiary=DnD.Creature._beastiary(apppath+'beastiary.csv')
             print(DnD.Creature.beastiary)
             for beast in DnD.Creature.beastiary:
-                x+="<option value='"+DnD.Creature.beastiary[beast].name+"'>"+DnD.Creature.beastiary[beast].name+"</option>"
-                print(beast.name)
+                name=DnD.Creature.beastiary[beast]['name']
+                x+='<option value="'+name+'">'+name+'</option>'
+                print(name)
             response_body=response_body.replace("<!--LABEL-->",x)
 
         response_body = response_body.encode('utf-8')
