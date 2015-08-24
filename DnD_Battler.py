@@ -245,7 +245,7 @@ class Creature:
                         self.log+="Weapon matched by str to "+w+N
                         break
                 else:
-                    raise Exception(w)
+                    raise Exception("Cannot figure out what is: "+kwargs['attack_parameters'])
         elif type(kwargs['attack_parameters']) is list:
             self.attack_parameters = kwargs['attack_parameters']
             self._attack_parse(self.attack_parameters)
@@ -316,7 +316,7 @@ class Creature:
                 print('Please group abilities in the dictionary abilities next time')
                 if not 'abilities' in kwargs.keys():
                     kwargs['abilities']={}
-                kwargs['abilities'][ab]=kwargs['ab']
+                kwargs['abilities'][ab]=kwargs[ab]
             if ab+"_bonus" in kwargs.keys():
                 print('Please group ability_bonuses in the dictionary ability_bonuses next time')
                 if not 'ability_bonuses' in kwargs.keys():

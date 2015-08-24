@@ -42,7 +42,7 @@ def application(environ, start_response):
             print(response_body)
         except Exception as e:
             print(e)
-            response_body = "\nERROR: "+str(e)
+            response_body = json.dumps({'battles':"Error: "+str(e)})
         ctype = 'text/plain'
         response_body = response_body.replace("\n","<br/>")
         response_body = response_body.encode('utf-8')
