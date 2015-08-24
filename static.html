@@ -147,11 +147,11 @@ function Add(newbie) {
 	var lineup=JSON.parse(sessionStorage.getItem('lineup'))
 	lineup.push(newbie);
 	sessionStorage.setItem('lineup', JSON.stringify(lineup));
+	$("#lineup").html(JSON.stringify(lineup));
 	}
 
 function AddA() {
 	var newbie=$("#drop").val();
-	$("#lineup").append('"'+newbie+'", ');
 	Add(newbie);
 	$("#confA").show("slow");
 	$("#confA").hide("slow");
@@ -159,7 +159,6 @@ function AddA() {
 
 function AddB() {
 	var newbie=$("#def").val();
-	$("#lineup").append('"'+newbie+'", ');
 	Add(newbie);
 	$("#confB").show("slow");
 	$("#def").val("");
@@ -174,7 +173,6 @@ function AddC() {
 		if (!!v) {newbie[key]=$("#"+key).val();}
 			$("#"+key).val("");
     });
-	$("#lineup").append('"'+JSON.stringify(newbie)+'", ');
 	Add(newbie);
 	$("#confC").show("slow");
 	$("#confC").hide("slow");
