@@ -121,7 +121,7 @@ class Creature:
                 beastiary[beast['name']]=beast
             return beastiary
         except:
-            print('Missing beastiary')
+            print('Missing beastiary in'+path)
             return {}
 
     beastiary=_beastiary('beastiary.csv')  #Class attribute!!
