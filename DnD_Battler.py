@@ -1004,6 +1004,9 @@ class Encounter():
 ################### HERE IS WHERE YOU CAN DECIDE THE LINE UP #####
 if __name__=="__main__":
     rounds = 100
+    print([Creature.beastiary[beast]['name'] for beast in Creature.beastiary])
+    for name in sorted([Creature.beastiary[beast]['name'] for beast in Creature.beastiary],key=str.lower):
+        print(name)
 
     wwe=Encounter("netsharpshooter","druid","barbarian",{"name":"muckup","base":"commoner","attack_parameters":'dagger'},"tarrasque", "polar","polar")
     wwe.battle(1,1)
