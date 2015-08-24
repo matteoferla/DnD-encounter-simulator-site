@@ -10,6 +10,8 @@ if place == "local":
     #The folder static is present both under the root and wsgi/
 
 def application(environ, start_response):
+    import json
+    import DnD_Battler as DnD
     sys.stdout =environ['wsgi.errors']
     print("Request recieved")
 
@@ -26,7 +28,6 @@ def application(environ, start_response):
         #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
         try:
-            import json, DnD_Battler
 
             l=json.loads(str(request_body)[2:-1])
             rounds = 1000
@@ -34,7 +35,7 @@ def application(environ, start_response):
             print(request_body)
             print("parsed as:")
             print(l)
-            wwe=DnD_Battler.Encounter(*l)
+            wwe=DnD.Encounter(*l)
             print("Encounter ready:")
             response_body =wwe.go_to_war(rounds).json()
             print("Simulation complete")
@@ -63,6 +64,10 @@ def application(environ, start_response):
             ctype = 'text/html'
             h=open(apppath+"static.html")
             response_body = h.read()
+            x=''
+            for beast in DnD.Creature.beastiary:
+                x+="<option value="+beast.name+">"+beast.name+"</option>"
+            response_body.replace('LABEL',x)
 
         response_body = response_body.encode('utf-8')
         status = '200 OK'

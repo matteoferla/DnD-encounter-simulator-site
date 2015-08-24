@@ -104,28 +104,42 @@ console.log(lineup);
 }
 
 function AddA() {
+	var newbie=$("#drop").val();
+	$("#lineup").append('"'+newbie+'", ');
+	//sessionStorage.setItem('lineup', JSON.stringify(mutball));
+	//JSON.parse(sessionStorage.getItem('ball'))
+	$("#confA").show("slow");
+	$("#confA").hide("slow");
+	}
+
+function AddB() {
 	var newbie=$("#def").val();
 	$("#lineup").append('"'+newbie+'", ');
 	//sessionStorage.setItem('lineup', JSON.stringify(mutball));
 	//JSON.parse(sessionStorage.getItem('ball'))
-	$("#conf").show("slow");
+	$("#confB").show("slow");
 	$("#def").val("");
-	$("#conf").hide("slow");
+	$("#confB").hide("slow");
 	}
 
-function AddB() {
+function AddC() {
 	var keys=["name","alignment","hp","ac","healing_spells","healing_bonus", "healing_dice","initiative_bonus","attack_parameters"];
 	var newbie={};
 	for (var x; x <keys.length; X++) {
 			newbie[x]=$("#"+x).val();
+			$("#"+x).val("");
 		}
 	$("#lineup").append('"'+newbie+'", ');
+	$("#confC").show("slow");
+	$("#confC").hide("slow");
 	}
 	
 	
 $( document ).ready(function () {
-	$("#def").keyup(function(event){if(event.keyCode == 13){AddA();}});
-	$("#conf").hide();
+	$("#def").keyup(function(event){if(event.keyCode == 13){AddB();}});
+	$("#confA").hide();
+	$("#confB").hide();
+	$("#confC").hide();
 	}) 
 
 
@@ -140,13 +154,16 @@ $( document ).ready(function () {
     </td>
   <tr>
     <td style="border:0px; padding: 20px; width:40%;  vertical-align:text-top"><h2>Encounter setup</h2>
-      <h3>Option A: add default combattant</h3>
-      Add a default monster, <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
+    <h3>Option A: add default combattant from list</h3>
+    Pick a default creature.<br/>
+    LABEL<button onclick="AddA()">Add</button> <span id=confA><i class="fa fa-check"></i></span>
+      <h3>Option B: add default combattant by name</h3>
+      Add a default creature, either from the list above or from the Creature()._fill_from_preset(name) method, which I have not phased out. <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, goblin, allo, anky, commoner, giant_toad, polar <em>etc</em>. <br/>
       <input type=text id=def style="width:40%">
       </textarea>&nbsp;
-      <button onclick="AddA()">Add</button> <span id=conf><i class="fa fa-check"></i></span>
+      <button onclick="AddB()">Add</button> <span id=confB><i class="fa fa-check"></i></span>
       <br/>
-      <h3>Option B: build combattant</h3>
+      <h3>Option C: build combattant</h3>
       Build from stats. For more options, such as buffs and nets or building from ability scores up, run the python script or ask the author, who can happily add a default. Apart from the name, all these parameters are optional (default is commoner).<br/>
       <table  class=clear>
         <tr>
@@ -196,7 +213,7 @@ $( document ).ready(function () {
         </tr>
       </table>
       <br/>
-      <button onclick="AddB()">Add</button>
+      <button onclick="AddC()">Add</button> <span id=confC><i class="fa fa-check"></i></span>
       <br/>
       <h3>Lineup</h3>
       <div style="padding:5px">
