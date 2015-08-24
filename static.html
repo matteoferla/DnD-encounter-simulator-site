@@ -159,7 +159,9 @@ function AddA() {
 
 function AddB() {
 	var newbie=$("#def").val();
-	Add(newbie);
+	var lineup=sessionStorage.getItem('lineup')+newbie;
+	sessionStorage.setItem('lineup', lineup);
+	$("#lineup").html(lineup);
 	$("#confB").show("slow");
 	$("#def").val("");
 	$("#confB").hide("slow");
@@ -219,8 +221,7 @@ $( document ).ready(function () {
     <select id=drop><option value="cthulhu">Select creature</option><!--LABEL--></select><button onclick="AddA()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confA><i class="fa fa-check"></i></span>
       <h3>Option B: add combattant as a raw string</h3>
       Here one can add a raw json string without preceeding quotes. If only a default creature's name is given it will add it. Note that there are more names than in the list above as the hardcoded creatures have not been moved to the beastiary spreadsheet (see Creature()._fill_from_preset(name) method for complete list <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, netsharpshooter, goblin, allo, anky, commoner, giant_toad, polar <i>etc</i>). <br/>
-      <textarea id=def style="width:100%">
-      </textarea><br/>
+      <textarea id=def style="width:100%"></textarea><br/>
       <button onclick="AddB()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confB><i class="fa fa-check"></i></span>
       <br/>
       <h3>Option C: build combattant</h3>
@@ -259,7 +260,7 @@ $( document ).ready(function () {
         <tr>
           <td class=clear>attack parameters: </td>
           <td class=clear><input type=text id=attack_parameters style="width:60%">
-            </textarea> <i class="fa fa-question" data-tooltip="This is a tad complicated, sorry. Technically it is a list of list. It is a series of values between square brackets between square brakets, <i>e.g.</i> [['club', 2, 0, 4], ['club', 2, 0, 4]]. Each square bracket block (list) denoted a part of an attack, namely a single attack will have only one, <i>e.g.</i> [['sword of a thousand truths', 7, 5, 16]], while a multiattack of two will have two as in the first example. The first element is a name, which is useless here as narration is disabled. The second is the attack bonus, the third is the damage bonus and the following are the dice. So [['Batleth',2,0,8,8]] is a +2, 2d8 and a [['flaming greatsword',3,1,6,6,4]] is a +3 2d6+d4+1" data-tooltip-position="bottom middle"></i> </td>
+            </textarea> <i class="fa fa-question" data-tooltip="This is a tad complicated, sorry. Technically it is a list of list. It is a series of values between square brackets between square brakets, <i>e.g.</i> [[*club*, 2, 0, 4], [*club*, 2, 0, 4]]. Each square bracket block (list) denoted a part of an attack, namely a single attack will have only one, <i>e.g.</i> [[*sword of a thousand truths*, 7, 5, 16]], while a multiattack of two will have two as in the first example. The first element is a name, which is useless here as narration is disabled. The second is the attack bonus, the third is the damage bonus and the following are the dice. So [[*Batleth*,2,0,8,8]] is a +2, 2d8 and a [[*flaming greatsword*,3,1,6,6,4]] is a +3 2d6+d4+1.<br/> There is an encoding issue that I can only resolve by changing the quote of the string to asterisk." data-tooltip-position="bottom middle"></i> </td>
         </tr>
         <tr>
           <td class=clear>Number of healing spells: </td>
@@ -314,7 +315,7 @@ $( document ).ready(function () {
       <div style="padding:5px">
       <div id=lineup style="padding:10px; ; height:2em; border:1px lightgrey; background:gainsboro"></div></div>
       <br/>
-      <button onclick="duel();"><i class="fa fa-bolt"></i> Calculate</button><button onclick='$("#lineup").html("");'><i class="fa fa-trash-o"></i> Clear</button>
+      <button onclick="duel();"><i class="fa fa-bolt"></i> Calculate</button><button onclick='$("#lineup").html("");sessionStorage.setItem("lineup","");'><i class="fa fa-trash-o"></i> Clear</button>
       <br/></div>
       <h2>Simulation Results <i class="fa fa-chevron-up" id="OFF_result" onclick="flip('result',0)"></i><i class="fa fa-chevron-down" id="ON_result"  onclick="flip('result',1)"></i></h2>
       <div id="DIV_result">

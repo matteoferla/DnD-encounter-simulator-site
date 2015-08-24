@@ -238,11 +238,11 @@ class Creature:
         if type(kwargs['attack_parameters']) is str:
             try:
                 import json
-                x=json.loads(kwargs['attack_parameters'])
+                x=json.loads(kwargs['attack_parameters'].replace("*","\""))
                 self._attack_parse(x)
                 self.attack_parameters = x
             except:
-                weapons={'dagger':4,'shortsword':6,'longsword':8,'bastardsword':10, 'greatsword':12,'rapier':8,'scimitar':6}
+                weapons={'club':6, 'dagger':4,'shortsword':6,'longsword':8,'bastardsword':10, 'greatsword':12,'rapier':8,'scimitar':6}
                 for w in weapons.keys():
                     if kwargs['attack_parameters'].lower().find(w)>-1:
                         #TODO fix the fact that a it gives the finesse option to all. Add more.
@@ -252,7 +252,7 @@ class Creature:
                         self.log+="Weapon matched by str to "+w+N
                         break
                 else:
-                    raise Exception("Cannot figure out what is: "+kwargs['attack_parameters'])
+                    raise Exception("Cannot figure out what is: "+kwargs['attack_parameters']+str(type(kwargs['attack_parameters'])))
         elif type(kwargs['attack_parameters']) is list:
             self.attack_parameters = kwargs['attack_parameters']
             self._attack_parse(self.attack_parameters)
