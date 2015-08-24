@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="author" content="Matteo Ferla">
+<meta name="description" content="D&D 5e battle simulator">
+<meta name="keywords" content="DnD, D&D, 5e, Dungeons and Dragons, next, online, python, battle, encounter, simulator">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>D&D Battle simulator</title>
 <style>
 .res {width=100%; text-align:center;}
 body {font-family: 'Raleway', sans-serif;}
 button {width:100px; text-align:justify}
+.external {
+	background: url(static/Icon_External_Link.png) center right no-repeat;
+	padding-right: 13px;
+}
 
 </style>
 <link rel="icon" href="static/favicon.ico" type="image/x-icon"/>
@@ -79,7 +86,8 @@ function Output (text) {
 	header={notes: "Notes",
 		rounds:"Total number of rounds fought",
 		battles:"Total number of battles fought" ,
-		prediction:"Rought predictions"}
+		prediction:"Rought predictions",
+		}
 	for (k in header) {
 		console.log("#OUT_"+	k)
 	$("#OUT_"+	k).html(header[k]+": "+reply[k]);
@@ -118,6 +126,7 @@ function Output (text) {
 		}
 	c+="</table>";
     $("#OUT_combattant").html(c);
+	$("#OUT_sample").html(reply['sample']);
 	}
 
 function duel() {
@@ -186,6 +195,7 @@ $( document ).ready(function () {
 	$("#OFF_setup").hide();
 	$("#ON_result").hide();
 	$("#DIV_result").hide();
+	$("#OUT_sample").hide();
 	}) 
 
 
@@ -199,6 +209,11 @@ $( document ).ready(function () {
     
     </td>
   <tr>
+  <td colspan="2" style="border:0px; padding: 20px 100px; text-align:center;"><p style="text-align:justify; text-align-last:center;">
+  This online tool calculates the victory probabilities in a D&amp;D encounter. It relies on <a href="https://github.com/matteoferla/DnD-battler" target="_blank" class=external>a python script</a>, which simulates an encounter 1,000 times for statistical accuracy. The characters can be inputted in a variety of ways ranging from a preset to an incomplete list of parameters, which the code will either calculate from others or default to the value of a commoner. The presets are based on <a href="https://github.com/matteoferla/DnD-battler/blob/master/beastiary.xlsx?raw=true">a "beastiary" table<span style="text-decoration:none">&nbsp;<i class="fa fa-download"></i></span></a> it references a series of assumptions (tactical decisions) detailed in the <a href="#work">Workings section</a> and in more technical detail in the <a href="https://github.com/matteoferla/DnD-battler" class=external target=_blank>documetation of the code</a>. For example, due to the complexity of the tactical decisions involved, which human players often fail at, the encounters are performed with the assumption that everyone borders everyone. The script is 5e focused in the way it handles crits, conditions, advatages and disadvantages.</p> 
+      <p style="text-align:justify; text-align-last:center;">Here are provided three ways to input the list of combattants. The first is picking creatures from the beastiary table, the second relies on a set of hardcoded creatures, many which have not yet been moved to the beastiary table and the third allows custom creatures to be added. The latter is a tad limited: for example nets, <i>barkskin</i> and rage cannot be added despite the fact that the presets "netsharpshooter", "druid" and "barbarian" use them.</p>
+  </td>
+  </tr><tr>
     <td style="border:0px; padding: 20px; width:40%; vertical-align:top"><h2>Encounter setup <i class="fa fa-chevron-up" id="OFF_setup" onclick="flip('setup',0)"></i><i class="fa fa-chevron-down" id="ON_setup"  onclick="flip('setup',1)"></i></h2>
       <div id="DIV_setup">
     <h3>Option A: add default combattant from list</h3>
@@ -313,6 +328,8 @@ $( document ).ready(function () {
       <p id="OUT_notes"></p>
       <p id="OUT_team"></p>
       <p id="OUT_combattant"></p>
+      <p onClick='$("#OUT_sample").toggle("slow");'><i class="fa fa-map-o"></i> Show one encounter</p>
+      <div style="width:100%; height:200px; overflow:scroll;" id="OUT_sample"></div>
       
       </div></div>
       <h2>More <i class="fa fa-chevron-up" id="OFF_more" onclick="flip('more',0)"></i><i class="fa fa-chevron-down" id="ON_more"  onclick="flip('more',1)"></i></h2>
@@ -330,7 +347,7 @@ $( document ).ready(function () {
       <p>D&D is an amazing game, but encounters can get tedious when they are not a challenge. Conversely, too much of a challenge leads to a dissapointing series of GM fiats or, worse, a total party kill, a scenario to avoid as it is disappointing for all or worse. Therefore a correct balance is needed. As a result the GM guide has a table that can be used to calculate how hard an encounter is, which is not overly accurate. I have been in too many encounters that on paper should have been deadly, while on the table have been a walk in the park. The reason for this is that a single value cannot represent the strength of a party.</p>
       <p> Consequently, to address and <a href="#links">analyse</a> this and <a href="#links">to trial new weapons</a>, I wrote a <a href="#links">python script</a> to simulate battles.</p>
       </div>
-      <h2>Workings <i class="fa fa-chevron-up" id="OFF_work" onclick="flip('work',0)"></i><i class="fa fa-chevron-down" id="ON_work"  onclick="flip('work',1)"></i></h2>
+      <h2 id=work>Workings <i class="fa fa-chevron-up" id="OFF_work" onclick="flip('work',0)"></i><i class="fa fa-chevron-down" id="ON_work"  onclick="flip('work',1)"></i></h2>
       <div id="DIV_work">
       <p>The script empirically simulates a specified number of repeats of an encounter (<i>i.e.</i> 1,000 times) in order to gain the probability of victory of defeat. damage and hp are not the sole factor in determining how an encounter may swing, therefore it may be impossible to predict with calculus, hence the simulation.</p>
       <h3>Assumptions</h3>
@@ -360,7 +377,7 @@ $( document ).ready(function () {
       <h2 id="links" >External links <i class="fa fa-chevron-up" id="OFF_link" onclick="flip('link',0)"></i><i class="fa fa-chevron-down" id="ON_link"  onclick="flip('link',1)"></i></h2>
       <div id="DIV_link">
       <ul class="fa-ul">
-        <li><i class="fa-li fa fa-github"></i> <a href="https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py">GitHub repository of the D&D battle python script</a></li>
+        <li><i class="fa-li fa fa-github"></i> <a href="https://github.com/matteoferla/DnD-battler">GitHub repository of the D&D battle python script</a></li>
         <li><i class="fa-li fa fa-comment"></i>  <a href="http://www.giantitp.com/forums/showthread.php?408755-D-amp-D-Battle-simulator">Discussion on Giant in the Playground about the script</a></li>
         <li><i class="fa-li fa fa-calculator"></i>  <a href="http://squidonius.blogspot.co.uk/2015/03/d-5e-weapon-analysis-and-suggestions.html">An analysis of D&D weapons</a></li>
         <li><i class="fa-li fa fa-bar-chart"></i>  <a href="http://squidonius.blogspot.co.uk/2015/04/d-battle-simulator.html">Analysis of simulated battle results (part 1)</a></li>

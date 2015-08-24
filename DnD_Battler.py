@@ -10,6 +10,12 @@ N="<br/>"
 TARGET ='enemy alive weakest'
 #target='enemy alive weakest', target='enemy alive random', target='enemy alive fiersomest'
 
+class logger:
+    masterlog=""  ###print overide for web.
+
+    def __new__(self,text):
+        self.masterlog+=str(text)+N
+
 __DOC__='''
 Welcome to the D&D Battle simulator.
 
@@ -87,10 +93,10 @@ class Dice:
 
     def _crit_check(self, result, verbose=0):
         if result == 1:
-            if verbose: print("Fumble!")
+            if verbose: logger("Fumble!")
             return -999  # automatic fail
         elif result == 20:
-            if verbose: print("Crit!")
+            if verbose: logger("Crit!")
             self.crit = 1
             return 999  # automatic hit.
         else:
@@ -129,6 +135,7 @@ class Creature:
 
 
     def __init__(self, wildcard, *args,**kwargs):
+        self.log=""
         if type(wildcard) is str and not args and not kwargs:
             self._fill_from_beastiary(wildcard)
         elif type(wildcard) is dict:
@@ -136,7 +143,7 @@ class Creature:
             if not args==[] and not kwargs=={}:
                 print("dictionary passed followed by unpacked dictionary error")
         elif type(wildcard) is Creature:
-            self. _initialise(wildcard, *args,**kwargs)
+            self._initialise(wildcard, *args,**kwargs)
         else:
             print("UNKNOWN COMBATTANT:"+str(wildcard))
             #raise Exception
@@ -370,155 +377,155 @@ class Creature:
 
     def _fill_from_preset(self,name):
         if name=="netsharpshooter":
-            self. _initialise(name="netsharpshooter",
+            self._initialise(name="netsharpshooter",
                         alignment="good",
                         hp=18, ac=18,
                         initiative_bonus=2,
                         healing_spells=6, healing_bonus=3, healing_dice=4,
                         attack_parameters=[['rapier', 4, 2, 8]], alt_attack=['net', 4, 0, 0], level=3)
         elif name=="bard":
-            self. _initialise(name="Bard", alignment="good",
+            self._initialise(name="Bard", alignment="good",
                               hp=18, ac=18,
                               healing_spells=6, healing_bonus=3, healing_dice=4,
                               initiative_bonus=2,
                               attack_parameters=[['rapier', 4, 2, 8]])
 
         elif name=="generic_tank":
-            self. _initialise(name="generic tank", alignment="good",
+            self._initialise(name="generic tank", alignment="good",
                                 hp=20, ac=17,
                                 initiative_bonus=2,
                                 attack_parameters=[['great sword', 5, 3, 6,6]])
 
         elif name=="mega_tank":
-            self. _initialise(name="mega tank", alignment="good",
+            self._initialise(name="mega tank", alignment="good",
                              hp=24, ac=17,
                              initiative_bonus=2,
                              attack_parameters=[['great sword', 5, 3, 10]])
 
         elif name=="a_b_dragon":
-            self. _initialise(name="Adult black dragon (minus frightful)", alignment="evil",
+            self._initialise(name="Adult black dragon (minus frightful)", alignment="evil",
                               ac=19, hp=195, initiative_bonus=2,
                               attack_parameters=[['1', 11, 6, 10, 10], ['2', 11, 6, 6, 6], ['2', 11, 4, 6, 6]])
 
         elif name=="y_b_dragon":
-            self. _initialise(name="Young black dragon", alignment="evil",
+            self._initialise(name="Young black dragon", alignment="evil",
                               ac=18, hp=127,
                               initiative_bonus=2,
                               attack_parameters=[['1', 7, 4, 10, 10, 8], ['2', 7, 4, 6, 6], ['2', 7, 4, 6, 6]])
 
         elif name=="frost_giant":
-            self. _initialise(name="Frost Giant", alignment="evil",
+            self._initialise(name="Frost Giant", alignment="evil",
                                ac=15, hp=138,
                                attack_parameters=[['club', 9, 6, 12, 12, 12], ['club', 9, 6, 12, 12, 12]])
 
         elif name=="hill_giant":
-            self. _initialise(name="Hill Giant", alignment="evil",
+            self._initialise(name="Hill Giant", alignment="evil",
                               ac=13, hp=105,
                               attack_parameters=[['club', 8, 5, 8, 8, 8], ['club', 8, 5, 8, 8, 8]])
 
         elif name=="goblin":
-            self. _initialise(name="Goblin", alignment="evil",
+            self._initialise(name="Goblin", alignment="evil",
                           ac=15, hp=7,
                           initiative_bonus=2,
                           attack_parameters=[['sword', 4, 2, 6]])
 
         elif name=="hero":
-            self. _initialise(name="hero", alignment="good",
+            self._initialise(name="hero", alignment="good",
                             ac=16, hp=18, #bog standard shielded leather-clad level 3.
                             attack_parameters=[['longsword', 4, 2, 8]])
 
         elif name=="antijoe":
-            self. _initialise(name="antiJoe", alignment="evil",
+            self._initialise(name="antiJoe", alignment="evil",
                             ac=17, hp=103, #bog standard leather-clad level 3.
                             attack_parameters=[['shortsword', 2, 2, 6]])
 
         elif name=="joe":
-            self. _initialise(name="Joe", alignment="good",
+            self._initialise(name="Joe", alignment="good",
                             ac=17, hp=103, #bog standard leather-clad level 3.
                             attack_parameters=[['shortsword', 2, 2, 6]])
 
         elif name=="bob":
-            self. _initialise(name="Bob", alignment="mad",
+            self._initialise(name="Bob", alignment="mad",
                             ac=10, hp=8,
                             attack_parameters=[['club', 2, 0, 4],['club', 2, 0, 4]])
 
         elif name=="allo":
-            self. _initialise(name="Allosaurus",alignment="evil",
+            self._initialise(name="Allosaurus",alignment="evil",
                        ac=13, hp=51,
                        attack_parameters=[['claw',6,4,8],['bite',6,4,10,10]])
 
         elif name=="anky":
-            self. _initialise("Ankylosaurus",
+            self._initialise("Ankylosaurus",
                       ac=15, hp=68, alignment='evil',
                       attack_parameters=[['tail',7,4,6,6,6,6]],
                       log="CR 3 700 XP")
 
         elif name=="barbarian":
-            self. _initialise(name="Barbarian",
+            self._initialise(name="Barbarian",
                              ac=18, hp=66, alignment="good",
                              attack_parameters=[['greatsword', 4, 1, 6, 6], ['frenzy greatsword', 4, 1, 6, 6]],
                              log="hp is doubled due to resistance")
 
         elif name=="druid":
-            self. _initialise(name="Twice Brown Bear Druid",
+            self._initialise(name="Twice Brown Bear Druid",
                          hp=86, ac=11, alignment="good",
                          attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6, 6]], ability_bonuses=[0, 0, 0, 0, 3, 0],
                          sc_ability='wis', buff='cast_barkskin', buff_spells=4,
                          log='The hp is bear x 2 + druid')
 
         elif name=="inert":
-            self. _initialise(name="inert", alignment="bad",
+            self._initialise(name="inert", alignment="bad",
                             ac=10, hp=20,
                             attack_parameters=[['toothpick', 0, 0, 2]])
 
         elif name=="test":
-            self. _initialise(name="Test", alignment="good",
+            self._initialise(name="Test", alignment="good",
                             ac=10, hp=100,
                             attack_parameters=[['club', 2, 0, 4]])
 
         elif name=="polar":
-            self. _initialise(name="polar bear",alignment='evil',
+            self._initialise(name="polar bear",alignment='evil',
                         ac=12, hp=42,
                         attack_parameters=[['bite',7,5,8],['claw',7,5,6,6]])
 
         elif name=="paradox":
-            self. _initialise(name="Paradox", alignment="evil",
+            self._initialise(name="Paradox", alignment="evil",
                            ac=10, hp=200,
                            attack_parameters=[['A', 2, 0, 1]])
 
         elif name=="commoner":
-            self. _initialise(name="Commoner", alignment="good",
+            self._initialise(name="Commoner", alignment="good",
                             ac=10, hp=4,
                             attack_parameters=[['club', 2, 0, 4]])
 
         elif name=="giant_rat":
-            self. _initialise(name="Giant Rat", alignment="evil",
+            self._initialise(name="Giant Rat", alignment="evil",
                              hp=7, ac=12,
                              initiative_bonus=2,
                              attack_parameters=[['bite', 4, 2, 4]])
 
         elif name=="twibear":
-            self. _initialise(name="Twice Brown Bear Druid",
+            self._initialise(name="Twice Brown Bear Druid",
                            hp=86, ac=11, alignment="good",
                            attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="barkskin_twibear":
-            self. _initialise(name="Druid twice as Barkskinned Brown Bear",
+            self._initialise(name="Druid twice as Barkskinned Brown Bear",
                                     hp=86, ac=16, alignment="good",
                                     attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="barkskin_bear":
-            self. _initialise(name="Barkskinned Brown Bear", alignment="good",
+            self._initialise(name="Barkskinned Brown Bear", alignment="good",
                                  hp=34, ac=16,
                                  attack_parameters=[['claw', 5, 4, 8], ['bite', 5, 4, 6]])
 
         elif name=="giant_toad":
-            self. _initialise(name="Giant Toad", alignment="evil",
+            self._initialise(name="Giant Toad", alignment="evil",
                               hp=39, ac=11,
                               attack_parameters=[['lick', 4, 2, 10, 10]])
 
         elif name=="cthulhu": #PF stats. who cares. you'll die.
-            self. _initialise(name="Cthulhu", alignment="beyond",
+            self._initialise(name="Cthulhu", alignment="beyond",
                               ac=49, hp=774, xp=9830400,
                               initiative_bonus=15, attack_parameters=[['2 claws', 42, 23, 6, 6, 6, 6],['4 tentacles', 42, 34, 10, 10]],
                                 alt_attack=['none', 0],
@@ -526,7 +533,7 @@ class Creature:
                                  buff='cast_nothing', buff_spells=0, log=None,hd=8, level=36, proficiency=27)
 
         else:
-            self. _initialise(name="Commoner", alignment="evil",
+            self._initialise(name="Commoner", alignment="evil",
                             ac=10, hp=4,
                             attack_parameters=[['club', 2, 0, 4]])
 
@@ -579,13 +586,13 @@ class Creature:
 
     def take_damage(self, points, verbose=0):
         self.hp -= points
-        if verbose: print(self.name + ' took ' + str(points) + ' of damage. Now on ' + str(self.hp) + ' hp.')
+        if verbose: logger(self.name + ' took ' + str(points) + ' of damage. Now on ' + str(self.hp) + ' hp.')
         if self.concentrating:
             dc = points/2
             if dc <10: dc=10
             if Dice(self.ability_bonuses[self.sc_ab]).roll() < dc:
                 self.conc_fx()
-                if verbose: print(self.name + ' has lost their concentration')
+                if verbose: logger(self.name + ' has lost their concentration')
 
     def ready(self):
         self.dodge=0
@@ -613,7 +620,7 @@ class Creature:
         if self.alt_attack['attack'].roll(verbose) >= opponent.ac:
             opponent.condition = 'netted'
             self.tally['hits'] += 1
-            if verbose: print(self.name + " netted " + opponent.name)
+            if verbose: logger(self.name + " netted " + opponent.name)
         else:
             self.tally['misses'] += 1
 
@@ -632,7 +639,7 @@ class Creature:
 
     def heal(self, points, verbose=0):
         self.hp += points
-        if verbose: print(self.name + ' was healed by ' + str(points) + '. Now on ' + str(self.hp) + ' hp.')
+        if verbose: logger(self.name + ' was healed by ' + str(points) + '. Now on ' + str(self.hp) + ' hp.')
 
 
     def assess_wounded(self, verbose=0):
@@ -640,7 +647,7 @@ class Creature:
             if len(targets) > 0:
                 weakling = targets[0]
                 if weakling.starting_hp > (self.healing.dice[0] + self.healing.bonus + weakling.hp):
-                    if verbose: print(self.name + " wants to heal " + weakling.name)
+                    if verbose: logger(self.name + " wants to heal " + weakling.name)
                     return weakling
                 else:
                     return 0
@@ -661,7 +668,7 @@ class Creature:
             except IndexError:
                 raise self.arena.Victory()
             if verbose:
-                print(self.name + ' attacks '+opponent.name+' with '+str(self.attacks[i]['name']))
+                logger(self.name + ' attacks '+opponent.name+' with '+str(self.attacks[i]['name']))
             #This was the hit method. put here for now.
             self.attacks[i]['attack'].advantage = self.check_advantage(opponent)
             if self.attacks[i]['attack'].roll(verbose) >= opponent.ac:
@@ -705,14 +712,14 @@ class Creature:
         #Buff?
         if self.condition == 'netted':
             #NOT-RAW: DC10 strength check or something equally easy for monsters
-            if verbose: print(self.name + " freed himself from a net")
+            if verbose: logger(self.name + " freed himself from a net")
             self.condition = 'normal'
         elif self.buff_spells > 0 and self.concentrating == 0:
             self.conc_fx()
-            if verbose: print(self.name + ' buffs up!')
+            if verbose: logger(self.name + ' buffs up!')
             #greater action economy: waste opponent's turn.
         elif economy and self is self.arena.find('weakest allies')[0]:
-            if verbose: print(self.name + " is dodging")
+            if verbose: logger(self.name + " is dodging")
             self.dodge = 1
         elif economy and self.alt_attack['name'] == 'net':
             opponent = self.arena.find('fiersomest enemy alive', self, verbose)[0]
@@ -731,7 +738,7 @@ class Encounter():
         pass
 
     def __init__(self, *lineup):
-        print(lineup)
+        #print(lineup)
         # self.lineup={x.name:x for x in lineup}
         #self.lineup = list(lineup)  #Classic fuck-up
         self.tally={'rounds':0, 'battles': 0, 'perfect': None, 'close':None, 'victories':None}
@@ -762,14 +769,14 @@ class Encounter():
             self.append(x)
 
     def __str__(self):
-        string = "=" * 50 + ' ' + self.name + " " + "=" * 50 + "\n"
+        string = "=" * 50 + ' ' + self.name + " " + "=" * 50 + N
         string += self.predict()
-        string += "-"*110+"\n"
-        string += "Battles: " + str(self.tally['battles']) + "; Sum of rounds: " + str(self.tally['rounds']) + "; " + self.note + "\n"
+        string += "-"*110+N
+        string += "Battles: " + str(self.tally['battles']) + "; Sum of rounds: " + str(self.tally['rounds']) + "; " + self.note + N
         for s in self.sides:
             string += "> Team " + str(s) + " = winning battles: " + str(self.tally['victories'][s]) + "; perfect battles: " + str(self.tally['perfect'][s]) + "; close-call battles: " + str(self.tally['close'][s])+ ";\n"
-        string += "-" * 49 + " Combattants  " + "-" * 48 + "\n"
-        for fighter in self.combattants: string += str(fighter) + "\n"
+        string += "-" * 49 + " Combattants  " + "-" * 48 + N
+        for fighter in self.combattants: string += str(fighter) + N
         return string
 
     def json(self):
@@ -788,6 +795,7 @@ class Encounter():
                 "combattant_hit_avg":[x.tally['hits'] / self.tally['battles'] for x in self.combattants],
                 "combattant_miss_avg":[x.tally['misses'] / self.tally['battles'] for x in self.combattants],
                 "combattant_rounds":[x.tally['rounds'] / self.tally['rounds'] for x in self.combattants],
+                "sample_encounter":logger.masterlog
                 }
         return json.dumps(jsdic)
 
@@ -824,8 +832,8 @@ class Encounter():
     def roll_for_initiative(self, verbose=0):
         self.combattants = sorted(self.combattants, key=lambda fighter: fighter.initiative.roll())
         if verbose:
-            print("Turn order:")
-            print([x.name for x in self])
+            logger("Turn order:")
+            logger([x.name for x in self])
 
     __doc__ = '''
     Battle…
@@ -876,6 +884,7 @@ class Encounter():
                 '> '+ a + '= expected rounds to survive: ' + str(round(rate[a],2))+'; crudely normalised: ' + str(round(rate[a]/(rate[a]+rate[b])*100))+ '%'+N+
                 '> '+ b + '= expected rounds to survive: ' + str(round(rate[b],2))+'; crudely normalised: ' + str(round(rate[b]/(rate[a]+rate[b])*100))+ '%'+N)
 
+
     def battle(self,reset=1,verbose=1):
         self.tally['battles'] += 1
         if reset: self.reset()
@@ -883,7 +892,7 @@ class Encounter():
         self.roll_for_initiative(verbose)
         while True:
             try:
-                if verbose: print('**NEW ROUND**')
+                if verbose: logger('**NEW ROUND**')
                 self.tally['rounds'] += 1
                 for character in self:
                     character.ready()
@@ -912,7 +921,7 @@ class Encounter():
         for character in self:
             character.tally['hp'] +=character.hp
             character.tally['healing_spells'] +=character.healing_spells
-        if verbose: print(self)
+        if verbose: logger(self)
         #return self or side?
         return self
 
@@ -997,7 +1006,8 @@ if __name__=="__main__":
     rounds = 100
 
     wwe=Encounter("netsharpshooter","druid","barbarian",{"name":"muckup","base":"commoner","attack_parameters":'dagger'},"tarrasque", "polar","polar")
-    print(wwe.go_to_war(rounds))
+    wwe.battle(1,1)
+    print(wwe.battle(1,1).json())
 
     ### KILL PEACEFULLY
     import sys

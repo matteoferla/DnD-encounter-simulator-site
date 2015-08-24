@@ -36,8 +36,8 @@ def application(environ, start_response):
             print("parsed as:")
             print(l)
             wwe=DnD.Encounter(*l)
-            print("Encounter ready:")
-            response_body =wwe.go_to_war(rounds).json()
+            print("Encounter ready")
+            response_body =wwe.go_to_war(rounds).battle(1,1).json()
             print("Simulation complete")
             print(response_body)
         except Exception as e:
