@@ -159,7 +159,7 @@ function AddA() {
 
 function AddB() {
 	var newbie=$("#def").val();
-	var lineup=sessionStorage.getItem('lineup')+newbie;
+	var lineup=sessionStorage.getItem('lineup')+", "+newbie;
 	sessionStorage.setItem('lineup', lineup);
 	$("#lineup").html(lineup);
 	$("#confB").show("slow");
