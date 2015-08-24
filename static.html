@@ -52,7 +52,6 @@ function duel_t() {
 	}
 
 function duel() {
-	
 console.log(sessionStorage.getItem('lineup'));
 document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
 xmlhttp=new XMLHttpRequest();
@@ -61,8 +60,9 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 		$("#status").html("Calculations complete");
+		console.log(xmlhttp.onreadystatechange);
     reply=JSON.parse(xmlhttp.responseText);
-	console.log(reply);
+	
 	header={notes: "Notes",
 		rounds:"Total number of rounds fought",
 		battles:"Total number of battles fought" ,
@@ -307,6 +307,12 @@ $( document ).ready(function () {
       <h3>Spell-list</h3>
       <p>Spell budgeting troubles players, therefore there is not much spellcasting, bar for a handful of cantrips.</p>
       </p>
+      <h2 id="future">Future work</h2>
+      <ul class="fa-ul">
+      <li><i class="fa-li fa fa-database"></i> Add more creatures to the excel sheet, especially PCs.</li>
+      <li><i class="fa-li fa fa-bug"></i> Double check with the PHB and MM some parts (TODO comments in code).</li>pencil
+      <i class="fa fa-database"></i>
+      </ul>
       <h2 id="links" >External links</h2>
       <ul class="fa-ul">
         <li><i class="fa-li fa fa-github"></i> <a href="https://github.com/matteoferla/tangents/blob/master/DnD_Battler.py">GitHub repository of the D&D battle python script</a></li>
