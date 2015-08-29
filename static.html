@@ -58,7 +58,7 @@ button {width:100px; text-align:justify}
     Pick a default creature, these are present in a csv file &mdash; the original xlsx can be found on my GitHub page.<br/>
     <select id=drop><option value="cthulhu">Select creature</option><!--LABEL--></select><button onclick="AddA()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confA><i class="fa fa-check"></i></span>
       <h3>Option B: add combattant as a raw string</h3>
-      Here one can add a raw json string without preceeding quotes. If only a default creature's name is given it will add it. Note that there are more names than in the list above as the hardcoded creatures have not been moved to the beastiary spreadsheet (see Creature()._fill_from_preset(name) method for complete list <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, netsharpshooter, goblin, allo, anky, commoner, giant_toad, polar <i>etc</i>). <br/>
+      Here one can add a raw json string (without quotes if adding lists and objects, with double quotes for names). Note that there are more names than in the list above as the hardcoded creatures have not been moved to the beastiary spreadsheet (see Creature()._fill_from_preset(name) method for complete list <i>e.g.</i>a_b_dragon, y_b_dragon, frost_giant, hill_giant, netsharpshooter, druid, allo, anky, commoner, giant_toad, polar <i>etc</i>). <br/>
       <textarea id=def style="width:100%"></textarea><br/>
       <button onclick="AddB()"><i class="fa fa-shopping-cart"></i> Add</button> <span id=confB><i class="fa fa-check"></i></span><span id=failB><i class="fa fa-times"></i></span>
       <br/>
@@ -153,7 +153,7 @@ button {width:100px; text-align:justify}
       <div style="padding:5px">
       <div id=lineup style="padding:10px; ; min-height:2em; border:1px lightgrey; background:gainsboro"><br/><br/></div></div>
       <br/>
-      <button onclick="duel();"><i class="fa fa-bolt"></i> Calculate</button><button onclick='initial();'><i class="fa fa-trash-o"></i> Clear</button>
+      <button onclick="duel();"><i class="fa fa-bolt"></i> Calculate</button><button onclick='initial();console.log("cleared");$("#lineup").html("")'><i class="fa fa-trash-o"></i> Clear</button>
       <br/></div>
       <h2>Simulation Results <i class="fa fa-chevron-up" id="OFF_result" onclick="flip('result',0)"></i><i class="fa fa-chevron-down" id="ON_result"  onclick="flip('result',1)"></i></h2>
       <div id="DIV_result">
