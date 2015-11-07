@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-place="server"
-host=8051
-apppath="app-root/repo/"
-if place == "local":
-    host=8080
-    apppath=""
-    #The folder static is present both under the root and wsgi/
+
 
 def application(environ, start_response):
     import json
@@ -29,7 +23,7 @@ def application(environ, start_response):
 
         try:
 
-            l=json.loads(str(request_body)[2:-1])
+            l=json.loads(str(request_body)[2:-1]) #ops. hindsight. decode('utf-8') should have been used. I'll fix the code one day/..
             rounds = 1000
             print("Request:")
             print(request_body)
@@ -81,8 +75,15 @@ def application(environ, start_response):
 # Below for testing only
 #
 if __name__ == '__main__':
-
+    host=8080
+    place = "local"
+    apppath=""
+    #The folder static is present both under the root and wsgi/
     from wsgiref.simple_server import make_server
     httpd = make_server('localhost', host, application)
     # Wait for a single request, serve it and quit.
     httpd.serve_forever()
+else:
+    apppath="app-root/repo/"
+    place="server"
+

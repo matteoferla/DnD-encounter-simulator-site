@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
+    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="tidy">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/battle.iml" afterPath="$PROJECT_DIR$/.idea/battle.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static.html" afterPath="$PROJECT_DIR$/static.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,13 +39,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DnD_Battler.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DnD_Battler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16517055" vertical-offset="10890" max-vertical-offset="14586">
-              <caret line="819" column="80" selection-start-line="819" selection-start-column="80" selection-end-line="819" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="14569">
+              <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
               <folding>
-                <element signature="e#128#141#0" expanded="true" />
                 <element signature="e#2002#5463#0" expanded="false" />
                 <element signature="e#5567#5987#0" expanded="false" />
                 <element signature="e#13667#13911#0" expanded="false" />
@@ -84,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="499" max-vertical-offset="1598">
-              <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.49046323" vertical-offset="1163" max-vertical-offset="1615">
+              <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -109,14 +110,16 @@
         <option value="$PROJECT_DIR$/testing.py" />
         <option value="$PROJECT_DIR$/battler.py" />
         <option value="$PROJECT_DIR$/static.html" />
-        <option value="$PROJECT_DIR$/wsgi.py" />
         <option value="$PROJECT_DIR$/DnD_Battler.py" />
+        <option value="$PROJECT_DIR$/wsgi.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1368" />
-    <option name="height" value="728" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1378" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -165,9 +168,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Geobacillus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -183,7 +189,7 @@
       <recent name="C:\Users\Cass\Documents\Openshift\battle\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DnD_Battler">
+  <component name="RunManager" selected="Python.wsgi">
     <configuration default="false" name="DnD_Battler" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -372,8 +378,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.DnD_Battler" />
-        <item index="1" class="java.lang.String" itemvalue="Python.wsgi" />
+        <item index="0" class="java.lang.String" itemvalue="Python.wsgi" />
+        <item index="1" class="java.lang.String" itemvalue="Python.DnD_Battler" />
         <item index="2" class="java.lang.String" itemvalue="Python.testing" />
       </list>
     </recent_temporary>
@@ -383,26 +389,26 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1368" height="728" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2518797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277592" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25149253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39966556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3355049" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39966556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3361204" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -431,7 +437,8 @@
     <MESSAGE value="improvements. Working now." />
     <MESSAGE value="switch to beastiary" />
     <MESSAGE value="fixed JSON issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed JSON issue" />
+    <MESSAGE value="tidy" />
+    <option name="LAST_COMMIT_MESSAGE" value="tidy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -453,7 +460,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17476">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -512,7 +518,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17255">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -571,7 +576,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1866" max-vertical-offset="16915">
           <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -630,7 +634,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12784">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -689,7 +692,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="11446" max-vertical-offset="13209">
           <caret line="683" column="3" selection-start-line="683" selection-start-column="3" selection-end-line="683" selection-end-column="3" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -758,7 +760,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2601" max-vertical-offset="13175">
           <caret line="162" column="35" selection-start-line="162" selection-start-column="35" selection-end-line="162" selection-end-column="35" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -817,7 +818,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2601" max-vertical-offset="13175">
           <caret line="162" column="35" selection-start-line="162" selection-start-column="35" selection-end-line="162" selection-end-column="35" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -876,7 +876,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13175">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -935,7 +934,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="12636" max-vertical-offset="13175">
           <caret line="757" column="4" selection-start-line="757" selection-start-column="4" selection-end-line="760" selection-end-column="32" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -1002,22 +1000,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="1598">
-          <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
-          <folding>
-            <element signature="e#22#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DnD_Battler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16517055" vertical-offset="10890" max-vertical-offset="14586">
-          <caret line="819" column="80" selection-start-line="819" selection-start-column="80" selection-end-line="819" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="14569">
+          <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
           <folding>
-            <element signature="e#128#141#0" expanded="true" />
             <element signature="e#2002#5463#0" expanded="false" />
             <element signature="e#5567#5987#0" expanded="false" />
             <element signature="e#13667#13911#0" expanded="false" />
@@ -1033,6 +1020,16 @@
             <element signature="e#33125#33129#0" expanded="false" />
             <element signature="e#38730#40116#0" expanded="false" />
             <element signature="e#41684#42153#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49046323" vertical-offset="1163" max-vertical-offset="1615">
+          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
