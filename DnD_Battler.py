@@ -134,7 +134,7 @@ class Creature:
     def _beastiary(path):
         try:
             import csv
-            r=csv.reader(open(path))
+            r=csv.reader(open(path, encoding='utf-8'))
             headers=next(r)
             beastiary={}
             for line in r:
