@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 import os
 import sys
-
+#place="server"
+place="local"
+host=8051
+apppath="app-root/repo/"
+if place == "local":
+    host=8080
+    apppath=""
+    #The folder static is present both under the root and wsgi/
 
 def application(environ, start_response):
     import json
     import DnD_Battler as DnD
     sys.stdout =environ['wsgi.errors']
-    print("Request recieved")
+    #print("Request recieved")
 
     if environ['REQUEST_METHOD'] == 'POST':              #If POST...
         #from cgi import parse_qs
@@ -23,17 +30,17 @@ def application(environ, start_response):
 
         try:
 
-            l=json.loads(str(request_body)[2:-1]) #ops. hindsight. decode('utf-8') should have been used. I'll fix the code one day/..
+            l=json.loads(str(request_body)[2:-1])
             rounds = 1000
-            print("Request:")
-            print(request_body)
-            print("parsed as:")
-            print(l)
+            #print("Request:")
+            #print(request_body)
+            #print("parsed as:")
+            #print(l)
             wwe=DnD.Encounter(*l)
-            print("Encounter ready")
+            #print("Encounter ready")
             response_body =wwe.go_to_war(rounds).battle(1,1).json()
-            print("Simulation complete")
-            print(response_body)
+            #print("Simulation complete")
+            #print(response_body)
         except Exception as e:
             print(e)
             response_body = json.dumps({'battles':"Error: "+str(e)})
@@ -75,15 +82,8 @@ def application(environ, start_response):
 # Below for testing only
 #
 if __name__ == '__main__':
-    host=8080
-    place = "local"
-    apppath=""
-    #The folder static is present both under the root and wsgi/
+
     from wsgiref.simple_server import make_server
     httpd = make_server('localhost', host, application)
     # Wait for a single request, serve it and quit.
     httpd.serve_forever()
-else:
-    apppath="app-root/repo/"
-    place="server"
-

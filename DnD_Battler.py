@@ -143,7 +143,7 @@ class Creature:
                     beastiary[beast['name']]=beast
             return beastiary
         except:
-            print('Missing beastiary in'+path)
+            print('Missing beastiary, expected path '+path)
             return {}
 
     beastiary=_beastiary.__func__('beastiary.csv')
@@ -1058,5 +1058,6 @@ def test():
 
 if __name__=="__main__":
     N="\n"
-    print(Encounter(Creature("ancient blue dragon")).addmob(200).go_to_war(10))
+    print(Encounter(Creature("ancient blue dragon")).addmob(200).go_to_war(2))
+
 
