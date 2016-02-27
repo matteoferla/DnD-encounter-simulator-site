@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
-#place="server"
-place="local"
+place="server"
+#place="local"
 host=8051
 apppath="app-root/repo/"
 if place == "local":
