@@ -142,8 +142,8 @@ class Creature:
                 if 'name' in beast:
                     beastiary[beast['name']]=beast
             return beastiary
-        except:
-            print('Missing beastiary, expected path '+path)
+        except Exception as e:
+            print('Beastiary error, expected path '+path+' error '+str(e))
             return {}
 
     beastiary=_beastiary.__func__('beastiary.csv')
