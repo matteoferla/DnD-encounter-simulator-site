@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
+    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="tidy">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/Icon_External_Link.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/Owlbear.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/Owlbear.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/favicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/favicon2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/fontawesome-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_animated.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_bordered-pulled.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_core.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_fixed-width.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_icons.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_larger.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_list.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_mixins.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_path.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_rotated-flipped.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_stacked.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/_variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/animated.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/bordered-pulled.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/coach.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/core.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/drop.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/fixed-width.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/css/font-awesome.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/font-awesome.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/css/font-awesome.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/scss/font-awesome.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/fonts/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/icons.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/jquery-2.1.4.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/larger.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/list.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/mixins.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/path.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/rotated-flipped.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/stacked.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/tether.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/tooltip-theme-arrows.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/tooltip-theme-twipsy.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/tooltip.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/font-awesome-4.4.0/less/variables.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +76,8 @@
       <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.2343326" vertical-offset="0" max-vertical-offset="2023">
-              <caret line="113" column="24" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.73513514" vertical-offset="0" max-vertical-offset="2023">
+              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -342,20 +388,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="8" width="1378" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25149253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25149253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39966556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344209" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3344209" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -819,8 +865,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.2343326" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="113" column="24" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.73513514" vertical-offset="0" max-vertical-offset="2023">
+          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>
