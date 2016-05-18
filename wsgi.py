@@ -31,18 +31,27 @@ def sendindex():
     response_body = response_body.encode('utf-8')
     return ctype, response_body
 
+def sendreviewpage():
+    tales=json.load(open(apppath+"tales.txt"))
+    return tales
+
+def add_to_tales(battle):
+    pass
+
 def getter(environ, start_response):
     ctype = 'text/plain'
     if not environ['PATH_INFO']:  #this never happens.! I thought it did, but it was an ecoding error
         ctype,response_body=sendindex()
     elif environ['PATH_INFO'] == '/health':
         response_body = "1"
+    elif environ['PATH_INFO'] == '/review':
+        response_body = sendreviewpage()
     elif environ['PATH_INFO'] == '/favicon.ico':
         ctype='image/x-icon'
         response_body = open('wsgi/static/favicon.ico','rb').read()
     elif environ['PATH_INFO'].find('/static') != -1: #why is localhost wsgi/static not working?!! It i quicker to botch it for now.
         #ctype = environ['HTTP_ACCEPT'].split(',')[0]
-        print("path.... ", environ['PATH_INFO'])
+        #print("path.... ", environ['PATH_INFO'])
         protoctype=environ['PATH_INFO'].split('.')[-1]
         if protoctype =='css':
             ctype='text/css'
@@ -63,8 +72,11 @@ def getter(environ, start_response):
             ctype='text/plain'
             response_body = open('wsgi'+environ['PATH_INFO'],'rb').read()
     elif environ['PATH_INFO'] == '/env':
+        response_body =""
+        '''
         response_body = ['%s: %s' % (key, value) for key, value in sorted(environ.items())]
         response_body = '\n'.join(response_body)
+        '''
     else:
         ctype,response_body=sendindex()
     status = '200 OK'
@@ -95,6 +107,7 @@ def poster(environ, start_response):              #If POST...
         wwe=DnD.Encounter(*l)
         #print("Encounter ready")
         response_body =wwe.go_to_war(rounds).battle(1,1).json()
+        add_to_tales(wwe)
         #print("Simulation complete")
         #print(response_body)
     except Exception as e:
