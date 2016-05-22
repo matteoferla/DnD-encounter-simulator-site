@@ -2,7 +2,7 @@
 import os
 import sys
 import json
-import DnD_Battler as DnD
+import DnD
 if __name__ == '__main__':
     place="local"
     host=8080
@@ -33,10 +33,13 @@ def sendindex():
 
 def sendreviewpage():
     tales=json.load(open(apppath+"tales.txt"))
-    return tales
+    return "\n".join(reversed(tales)).replace("<br/>","\n").encode('utf-8')
 
 def add_to_tales(battle):
-    pass
+    #tales=[]
+    tales=json.load(open(apppath+"tales.txt"))
+    tales.append(str(tales))
+    json.dump(tales,open(apppath+"tales.txt",'w'))
 
 def getter(environ, start_response):
     ctype = 'text/plain'
