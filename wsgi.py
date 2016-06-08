@@ -11,6 +11,7 @@ else:
     place="server"
     host=8051
     apppath="app-root/repo/"
+print(place)
 DnD.Creature.beastiary=DnD.Creature._beastiary(apppath+'beastiary.csv')
 
 def application(environ, start_response):
