@@ -39,7 +39,7 @@ def sendreviewpage():
 def add_to_tales(battle):
     #tales=[]
     tales=json.load(open(apppath+"tales.txt"))
-    tales.append(str(tales))
+    tales.append(str(battle))
     json.dump(tales,open(apppath+"tales.txt",'w'))
 
 def getter(environ, start_response):
