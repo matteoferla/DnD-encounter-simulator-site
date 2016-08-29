@@ -38,9 +38,9 @@ def sendreviewpage():
 
 def add_to_tales(battle):
     #tales=[]
-    tales=json.load(open(apppath+"tales.txt"))
+    tales=json.load(open(apppath+"tales.txt", encoding='utf-8'))
     tales.append(str(battle))
-    json.dump(tales,open(apppath+"tales.txt",'w'))
+    json.dump(tales,open(apppath+"tales.txt",'w', encoding='utf-8'))
 
 def getter(environ, start_response):
     ctype = 'text/plain'
