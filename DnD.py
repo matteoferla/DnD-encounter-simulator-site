@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 __author__ = "Matteo"
 __copyright__ = "Don't blame me for a TPK"
 __email__ = "matteo.ferla on the gmail"
@@ -193,9 +194,9 @@ class Creature:
     """
 
     @staticmethod
-    def _beastiary(path):
+    def load_beastiary(path):
         """
-        `_beastiary(path)` is a function while beastiary is the attribute it fills.
+        `load_beastiary(path)` (formerly just `_beastiary`) is a function while beastiary is the attribute it fills.
 
         There are a few way of how the creature data comes about. This is to initialise the beastiary, now the standard source of beastiary.
 
@@ -257,7 +258,7 @@ class Creature:
             warnings.warn('Beastiary error, expected path ' + path + ' error ' + str(e))
             return {}
 
-    beastiary = _beastiary.__func__('beastiary.csv')
+    beastiary = load_beastiary.__func__('beastiary.csv')
     ability_names = ['str', 'dex', 'con', 'wis', 'int', 'cha']
 
     def __init__(self, wildcard, **kwargs):  # I removed *args... not sure what they did.
@@ -329,6 +330,7 @@ class Creature:
 
         # Mod of preexisting
         if 'base' in self.settings:
+            #Sanify first and make victim
             if type(self.settings['base']) is str:
                 victim = Creature(
                     self.settings['base'])  # generate a preset and get its attributes. Seems a bit wasteful.
@@ -336,7 +338,10 @@ class Creature:
                 victim = self.settings['base']
             else:
                 raise TypeError
+            #copy all
+            #victim.ability_bonuses #in case the user provided with ability scores, which are overridden by adbility bonues
             base = {x: getattr(victim, x) for x in dir(victim) if getattr(victim, x) and x.find("__") == -1 and x.find("_") != 0 and x != 'beastiary'}
+            base['ability_bonuses']={}
             #base.update(**self.settings)
             for (k,v) in self.settings.items():
                 if type(v) is dict:
@@ -369,12 +374,18 @@ class Creature:
                 self.hd = Dice(self.ability_bonuses['con'], size_cat[self.settings['size']], avg=True, role="hd")
         elif 'hp' in self.settings and 'level' in self.settings:
             #Guess based on hp and level. It is not that dodgy really as the manual does not use odd dice.
-            options = {x: (int(self.settings['hp']) - x - self.ability_bonuses['con'])/(self.settings['level'] -1) - self.ability_bonuses['con'] for x in range(4,13,2)}
-            warnings.warn('Unfinished case. so Defaulting hit dice to d8 instead') #TODO finish
+            # hp =approx. 0.5 HD * (level-1) + HD + con * level
+            # HD * (0.5* (level-1)+1) = hp - con*level
+            # HD = (hp - con*level)/(level+1)
+            bestchoice=(int(self.settings['hp'])-int(self.ability_bonuses['con']) * int(self.settings['level']))/((int(self.settings['level'])+1))
+            print(int(self.settings['hp']),int(self.ability_bonuses['con']), int(self.settings['level']))
+            print("choice HD...",bestchoice)
+            #print("diagnosis...",self.ability_bonuses)
+            warnings.warn('Unfinished case to guess HD. so Defaulting hit dice to d8 instead') #TODO finish
             self.hd = Dice(self.ability_bonuses['con'], 8, avg=True, role="hd")
         else:
             #defaulting to d8
-            warnings.warn('Defaulting hit dice to d8')
+            warnings.warn('Insufficient info: defaulting hit dice to d8')
             self.hd = Dice(self.ability_bonuses['con'], 8, avg=True, role="hd")
 
         # Get HP
@@ -433,11 +444,24 @@ class Creature:
                 self._attack_parse(x)
                 self.attack_parameters = x
             except:
-                weapons = {'club': 6, 'dagger': 4, 'shortsword': 6, 'longsword': 8, 'bastardsword': 10,
-                           'greatsword': 12, 'rapier': 8, 'scimitar': 6}
+                #These have to be readable by _attack_parse
+                weapons = {'club': 4, 'greatclub':8,
+                           'dagger': 4, 'shortsword': 6, 'longsword': 8, 'bastardsword': 10, 'greatsword': 12,
+                           'rapier': 8, 'scimitar': 6, 'sickle':4,
+                           'handaxe':6, 'battleaxe':8, 'waraxe':10,'greataxe':12,
+                           'javelin':6, 'spear':6, 'flail':8, 'glaive':10, 'halberd':10, 'lance':12, 'pike':10, 'trident': 6,
+                           'war pick':8,
+                           'lighthammer':4, 'mace':6, 'warhammer':8,
+                           'quaterstaff':6, 'morningstar':8, 'punch':1, 'whip':4} #parsing of strings for dice not implemented yet, so punch is d1 for now.
+                # TODO weapons removed as they gave trouble:
+                #'maul':[6,6],
+                # 'brütal war pick': [8, 8],  # okay, I could not resist it.
+
+                #bastard sword and war axe are no more due to the versatile rule, however they were kept here to keep it simple
+                #ranged weapons are missing for now...
                 for w in weapons.keys():
                     if self.settings['attack_parameters'].lower().find(w) > -1:
-                        # TODO fix the fact that a it gives the finesse option to all. Add more.
+                        # TODO fix the fact that a it gives the finesse option to all.
                         chosen_ab = self.ability_bonuses[max('str', 'dex', key=lambda ab: self.ability_bonuses[ab])]
                         self.attack_parameters = [[w, self.proficiency + chosen_ab, chosen_ab, weapons[w]]]
                         self._attack_parse(self.attack_parameters)
@@ -522,6 +546,7 @@ class Creature:
                 else:
                     raise TypeError("Cannot parse "+grouping)
         # individual abilities overwrite
+        #print("debug... ",cleandex['ability_bonuses'])
         for k in lowerdex:
             if k[0:3] in ability_names:
                 cleandex['abilities'][k[0:3]] = int(lowerdex[k])
@@ -531,8 +556,11 @@ class Creature:
                 cleandex['ability_bonuses'][k[3:6]] = int(lowerdex[k])
                 if k[3:6] not in lowerdex:
                     cleandex['abilities'][k[3:6]] = int(lowerdex[k])*2+10
+            elif k in ['abilities','ability_bonuses']:
+                pass
             else:
                 cleandex[k] = lowerdex[k]
+        #print("debug... ",cleandex['ability_bonuses'])
         return cleandex
 
     def _set(self, item, alt=None, expected_type='string'):
@@ -558,13 +586,16 @@ class Creature:
         """
         self.able = 1  # has abilities. if nothing at all is provided it goes to zero. This is for rocks...
         # set blanks
-        self.ability_bonuses = {n: 0 for n in self.ability_names}
+        self.ability_bonuses = {n: 0 for n in self.ability_names} #default for no given ability score is 10 (bonus = 0) as per manual.
         self.abilities = {n: 10 for n in self.ability_names}
-        for ability in self.settings['abilities']:
+        for ability in self.settings['abilities']: #a dictionary within a dictionary
+            if ability in self.settings['ability_bonuses']:
+                assert 10+self.settings['ability_bonuses'][ability]*2 == self.settings['abilities'][ability], 'Mismatch: both ability score and bonus provided, but they differ'
             self.abilities[ability] = int(self.settings['abilities'][ability])
             self.ability_bonuses[ability] = math.floor(int(self.settings['abilities'][ability])/2-5)
         for ability in self.settings['ability_bonuses']:
             self.ability_bonuses[ability] = self.settings['ability_bonuses'][ability]
+            self.abilities[ability] = 10 + 2 * self.ability_bonuses[ability] #I know it means nothing, but I am unsure why this was absent.
 
     def _fill_from_dict(self, dictionary):
         return self._initialise(**dictionary)
@@ -1017,6 +1048,8 @@ class Creature:
         :return: a string
         """
         def writeline(field,value,secvalue=None):
+            #returns _field_: value (secvalue)
+            #secvalues is if has a secondary value to be added in brachets
             if not secvalue:
                 return '_'+str(field).replace("_"," ")+'_: '+str(value)+'  \n'
             else:
@@ -1048,9 +1081,9 @@ class Creature:
         sheet += '### Attacks\n'
         sheet +=  writeline('Potential average damage per turn',self.hurtful)
         for d in self.attacks:
-                sheet +=  writeline(d['name'],d['attack'],d['damage'])
+                sheet += "* "+ writeline(d['name'],d['attack'],d['damage'])
         sheet += '### Raw data\n'
-        sheet+=str(self.__dict__)
+        sheet+=str(self.__dict__).replace('<br/>','\n')
         return sheet
 
 
@@ -1413,4 +1446,4 @@ def creature_check(who= 'commoner'):
 
 if __name__ == "__main__":
     pass
-    #I was updating the change_ability method of creature
+    #TODO I was updating the change_ability method of creature
