@@ -48,8 +48,18 @@
       <file leaf-file-name="tales.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tales.txt">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="617">
+              <caret line="7405" column="0" selection-start-line="7405" selection-start-column="0" selection-end-line="7405" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log_as_on_server.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log_as_on_server.txt">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7405" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -386,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1472512122424</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed">
+      <created>1472512199969</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1472512199969</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -449,13 +466,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wsgi.py-bkp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="285" column="35" selection-start-line="285" selection-start-column="35" selection-end-line="285" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -831,10 +841,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tales.txt">
+    <entry file="file://$PROJECT_DIR$/log_as_on_server.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7405" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tales.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="7405" column="0" selection-start-line="7405" selection-start-column="0" selection-end-line="7405" selection-end-column="0" />
           <folding />
         </state>
       </provider>
