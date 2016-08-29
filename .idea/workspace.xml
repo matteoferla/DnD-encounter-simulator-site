@@ -4,7 +4,6 @@
     <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tales.txt" afterPath="$PROJECT_DIR$/tales.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
     <ignored path="battle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -46,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tales.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tales.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tales.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="7385" column="25" selection-start-line="7385" selection-start-column="25" selection-end-line="7385" selection-end-column="25" />
+            <state relative-caret-position="0">
+              <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -82,8 +81,8 @@
         <option value="$PROJECT_DIR$/DnD_Battler.py" />
         <option value="$PROJECT_DIR$/static.html" />
         <option value="$PROJECT_DIR$/DnD.py" />
-        <option value="$PROJECT_DIR$/tales.txt" />
         <option value="$PROJECT_DIR$/wsgi.py" />
+        <option value="$PROJECT_DIR$/tales.txt" />
       </list>
     </option>
   </component>
@@ -411,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1472512261722</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed">
+      <created>1472512405430</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1472512405431</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -847,14 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tales.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7385" column="25" selection-start-line="7385" selection-start-column="25" selection-end-line="7385" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -862,6 +860,14 @@
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tales.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
