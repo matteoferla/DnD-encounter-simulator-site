@@ -591,8 +591,8 @@ class Creature:
         for ability in self.settings['abilities']: #a dictionary within a dictionary
             if ability in self.settings['ability_bonuses']:
                 if 10+self.settings['ability_bonuses'][ability]*2 != self.settings['abilities'][ability] and 10+self.settings['ability_bonuses'][ability]*2 +1 != self.settings['abilities'][ability]:
-                    #warnings.warn('Mismatch: both ability score and bonus provided, ' \
-                    #'but they differ ({0}: 10+{1}*2 vs. {2})'.format(ability,self.settings['ability_bonuses'][ability], self.settings['abilities'][ability]))
+                    warnings.warn('Mismatch: both ability score and bonus provided, ' \
+                    'but they differ ({0}: 10+{1}*2 vs. {2})'.format(ability,self.settings['ability_bonuses'][ability], self.settings['abilities'][ability]))
                     pass
             self.abilities[ability] = int(self.settings['abilities'][ability])
             self.ability_bonuses[ability] = math.floor(int(self.settings['abilities'][ability])/2-5)
