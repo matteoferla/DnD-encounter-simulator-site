@@ -3,6 +3,8 @@ import os
 import sys
 import json
 import DnD
+import time
+
 if __name__ == '__main__':
     place="local"
     host=8080
@@ -32,15 +34,17 @@ def sendindex():
     response_body = response_body.encode('utf-8')
     return ctype, response_body
 
+def line_prepender(filename, line):
+    with open(filename, 'r+', encoding='utf-8') as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(line.rstrip('\r\n') + '\n' + content)
+
 def sendreviewpage():
-    tales=json.load(open(apppath+"tales.txt"))
-    return "\n".join(reversed(tales)).replace("<br/>","\n").encode('utf-8')
+    return open(apppath+"tales.txt").read().replace("<br/>","\n").encode('utf-8')
 
 def add_to_tales(battle):
-    #tales=[]
-    tales=json.load(open(apppath+"tales.txt", encoding='utf-8'))
-    tales.append(str(battle))
-    json.dump(tales,open(apppath+"tales.txt",'w', encoding='utf-8'))
+    line_prepender(apppath+"tales.txt",str(battle))
 
 def getter(environ, start_response):
     ctype = 'text/plain'
@@ -103,17 +107,17 @@ def poster(environ, start_response):              #If POST...
     try:
 
         l=json.loads(str(request_body)[2:-1])
-        rounds = 1000
-        #print("Request:")
-        #print(request_body)
-        #print("parsed as:")
-        #print(l)
-        wwe=DnD.Encounter(*l)
-        #print("Encounter ready")
-        response_body =wwe.go_to_war(rounds).battle(1,1).json()
+        start=time.clock()
+        rounds = 0
+        while time.clock() - start < 60 or rounds < 1000:
+            wwe=DnD.Encounter(*l)
+            wwe.go_to_war(10)
+            #print("Encounter ready")
+            rounds += 10
+        response_body = wwe.battle(1, 1).json()
         add_to_tales(wwe)
-        #print("Simulation complete")
-        #print(response_body)
+        if rounds < 1000:
+            print('Timeout')
     except Exception as e:
         print(e)
         response_body = json.dumps({'battles':"Error: "+str(e)})

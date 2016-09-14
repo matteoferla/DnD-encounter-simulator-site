@@ -8,7 +8,7 @@ import random
 import math
 import warnings
 
-# N="\n"
+#N="\n"
 N = "<br/>"
 TARGET = 'enemy alive weakest'
 # target='enemy alive weakest', target='enemy alive random', target='enemy alive fiersomest'
@@ -593,7 +593,6 @@ class Creature:
                 if 10+self.settings['ability_bonuses'][ability]*2 != self.settings['abilities'][ability] and 10+self.settings['ability_bonuses'][ability]*2 +1 != self.settings['abilities'][ability]:
                     warnings.warn('Mismatch: both ability score and bonus provided, ' \
                     'but they differ ({0}: 10+{1}*2 vs. {2})'.format(ability,self.settings['ability_bonuses'][ability], self.settings['abilities'][ability]))
-                    pass
             self.abilities[ability] = int(self.settings['abilities'][ability])
             self.ability_bonuses[ability] = math.floor(int(self.settings['abilities'][ability])/2-5)
         for ability in self.settings['ability_bonuses']:
@@ -1354,7 +1353,10 @@ class Encounter:
                 se[i] = "NA"
         self.reset()
         for i in list(x):
-            self.note += str(i) + ': ' + str(round(x[i], 2)) + ' ± ' + str(round(se[i], 2)) + '; '
+            try:
+                self.note += str(i) + ': ' + str(round(float(x[i]), 2)) + ' ± ' + str(round(float(se[i]), 2)) + '; '
+            except:
+                self.note += str(i) + ': ' + str(x[i]) + ' ± ' + str(se[i]) + '; '
         return self
 
     def find(self, what, searcher=None, team=None):
