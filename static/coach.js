@@ -91,6 +91,7 @@ function Output (text) {
 
 function duel() {
 console.log(sessionStorage.getItem('lineup'));
+flip("result",1)
 document.getElementById("status").innerHTML="<i class='fa fa-spinner fa-pulse'></i> Simulation in progress.";
 xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()

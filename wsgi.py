@@ -109,8 +109,8 @@ def poster(environ, start_response):              #If POST...
         l=json.loads(str(request_body)[2:-1])
         start=time.clock()
         rounds = 0
-        while time.clock() - start < 60 or rounds < 1000:
-            wwe=DnD.Encounter(*l)
+        wwe = DnD.Encounter(*l)
+        while time.clock() - start < 60 and rounds < 1000:
             wwe.go_to_war(10)
             #print("Encounter ready")
             rounds += 10
