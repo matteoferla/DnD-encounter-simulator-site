@@ -41,7 +41,7 @@ def line_prepender(filename, line):
         f.write(line.rstrip('\r\n') + '\n' + content)
 
 def sendreviewpage():
-    return open(apppath+"tales.txt").read().replace("<br/>","\n").encode('utf-8')
+    return open(apppath+"tales.txt", encoding='utf-8').read().replace("<br/>","\n").encode('utf-8')
 
 def add_to_tales(battle):
     line_prepender(apppath+"tales.txt",str(battle))
