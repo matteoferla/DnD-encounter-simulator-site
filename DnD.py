@@ -1123,6 +1123,7 @@ class Encounter:
         # print(lineup)
         # self.lineup={x.name:x for x in lineup}
         # self.lineup = list(lineup)  #Classic fuck-up
+        self.KILL=False #needed for code.
         self.tally = {'rounds': 0, 'battles': 0, 'perfect': None, 'close': None, 'victories': None}
         self.active = None
         self.name = 'Encounter'
@@ -1342,7 +1343,10 @@ class Encounter:
 
     def go_to_war(self, rounds=1000):
         for i in range(rounds):
+            print(i,self.KILL)
             self.battle(1, 0)
+            if self.KILL==True:
+                break
         x = {y: self.tally['victories'][y] for y in self.sides}
         se = {}
         for i in list(x):

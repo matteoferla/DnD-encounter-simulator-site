@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="">
+    <list default="true" id="21312cbc-456d-4482-b407-b9d7ef828723" name="Default" comment="fixed">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DnD.py" afterPath="$PROJECT_DIR$/DnD.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tales.txt" afterPath="$PROJECT_DIR$/tales.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
@@ -27,8 +28,8 @@
       <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+            <state relative-caret-position="180">
+              <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -39,7 +40,7 @@
       <file leaf-file-name="static.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3330">
+            <state relative-caret-position="353">
               <caret line="222" column="33" selection-start-line="222" selection-start-column="33" selection-end-line="222" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#td#0;n#tr#2;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -51,7 +52,7 @@
       <file leaf-file-name="coach.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/coach.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
+            <state relative-caret-position="1395">
               <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="16" />
               <folding />
             </state>
@@ -61,8 +62,8 @@
       <file leaf-file-name="DnD.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DnD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="876" column="19" selection-start-line="876" selection-start-column="16" selection-end-line="876" selection-end-column="19" />
+            <state relative-caret-position="132">
+              <caret line="1345" column="12" selection-start-line="1345" selection-start-column="12" selection-end-line="1345" selection-end-column="12" />
               <folding>
                 <element signature="e#152#165#0" expanded="true" />
                 <element signature="e#5651#6641#0" expanded="false" />
@@ -88,18 +89,18 @@
         <option value="$PROJECT_DIR$/battler.py" />
         <option value="$PROJECT_DIR$/beastiary.csv" />
         <option value="$PROJECT_DIR$/DnD_Battler.py" />
-        <option value="$PROJECT_DIR$/DnD.py" />
         <option value="$PROJECT_DIR$/log_as_on_server.txt" />
         <option value="$PROJECT_DIR$/static/coach.js" />
         <option value="$PROJECT_DIR$/static.html" />
         <option value="$PROJECT_DIR$/tales.txt" />
+        <option value="$PROJECT_DIR$/DnD.py" />
         <option value="$PROJECT_DIR$/wsgi.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1679" />
-    <option name="y" value="229" />
+    <option name="x" value="72" />
+    <option name="y" value="86" />
     <option name="width" value="1368" />
     <option name="height" value="744" />
   </component>
@@ -167,7 +168,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DnD-battler" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -476,11 +477,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473886387320</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fixed">
+      <created>1473965575340</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1473965575340</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1679" y="229" width="1368" height="744" extended-state="0" />
+    <frame x="72" y="86" width="1368" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2501856" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -539,13 +547,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DnD_Battler.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -825,9 +826,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/log_as_on_server.txt" />
+    <entry file="file://$PROJECT_DIR$/tales.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/coach.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.5.2_1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="861" column="0" selection-start-line="861" selection-start-column="0" selection-end-line="861" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3330">
+        <state relative-caret-position="353">
           <caret line="222" column="33" selection-start-line="222" selection-start-column="33" selection-end-line="222" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#td#0;n#tr#2;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -835,26 +859,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tales.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/coach.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DnD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="876" column="19" selection-start-line="876" selection-start-column="16" selection-end-line="876" selection-end-column="19" />
+        <state relative-caret-position="132">
+          <caret line="1345" column="12" selection-start-line="1345" selection-start-column="12" selection-end-line="1345" selection-end-column="12" />
           <folding>
             <element signature="e#152#165#0" expanded="true" />
             <element signature="e#5651#6641#0" expanded="false" />
@@ -867,8 +875,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+        <state relative-caret-position="180">
+          <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>

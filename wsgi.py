@@ -3,7 +3,11 @@ import os
 import sys
 import json
 import DnD
-import time
+import threading, time
+
+
+class TimeoutError(Exception):
+    pass
 
 if __name__ == '__main__':
     place="local"
@@ -105,19 +109,16 @@ def poster(environ, start_response):              #If POST...
     #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
     try:
-
-        l=json.loads(str(request_body)[2:-1])
-        start=time.clock()
-        rounds = 0
+        def worker(wwe):
+            wwe.go_to_war(100)
+        l = json.loads(str(request_body)[2:-1])
         wwe = DnD.Encounter(*l)
-        while time.clock() - start < 60 and rounds < 1000:
-            wwe.go_to_war(10)
-            #print("Encounter ready")
-            rounds += 10
+        w=threading.Thread(target=worker,args=(wwe,))
+        w.start()
+        time.sleep(10)
+        wwe.KILL = True
         response_body = wwe.battle(1, 1).json()
         add_to_tales(wwe)
-        if rounds < 1000:
-            print('Timeout')
     except Exception as e:
         print(e)
         response_body = json.dumps({'battles':"Error: "+str(e)})
