@@ -109,11 +109,9 @@ def poster(environ, start_response):              #If POST...
     #value = parsed_body.get('test_text', [''])[0] #Returns the first value
 
     try:
-        def worker(wwe):
-            wwe.go_to_war(100)
         l = json.loads(str(request_body)[2:-1])
         wwe = DnD.Encounter(*l)
-        w=threading.Thread(target=worker,args=(wwe,))
+        w=threading.Thread(target=wwe.go_to_war,args=(1000,))
         w.start()
         time.sleep(10)
         wwe.KILL = True
