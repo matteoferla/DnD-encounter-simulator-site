@@ -10,3 +10,12 @@ As present here is not actually the live version, which runs off older code.
 
 
 If you were looking for the python module to similate locally all the encounters you fancy, then you need to check out the [DnD encounter similator  GitHub repository](https://github.com/matteoferla/DnD-battler).
+
+## Example
+
+import dnd_app
+import waitress
+from pyramid.router import Router
+
+app :Router = dnd_app.create_app()
+waitress.serve(app, port=6666)
