@@ -23,9 +23,9 @@ tests_require = [
 ]
 
 setup(
-    name='dnd_app',
+    name='DnD_app',
     version='0.0',
-    description='dnd_app',
+    description='DnD_app',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
         'Programming Language :: Python',
@@ -46,7 +46,7 @@ setup(
     install_requires=requires,
     entry_points={
         'paste.app_factory': [
-            'main = dnd_app:main',
+            'main = DnD_app:main',
         ],
     },
 )

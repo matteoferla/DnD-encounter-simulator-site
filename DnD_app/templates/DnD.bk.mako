@@ -11,8 +11,8 @@
     <style>
     .res {width=100%; text-align:center;}
     </style>
-    <link rel="icon" href="${request.static_path('dnd_app:static/favicon.ico')}" type="image/x-icon"/>
-    <link rel="shortcut icon" href="${request.static_path('dnd_app:static/favicon.ico')}" type="image/x-icon"/>
+    <link rel="icon" href="${request.static_path('DnD_app:static/favicon.ico')}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${request.static_path('DnD_app:static/favicon.ico')}" type="image/x-icon"/>
     <link rel="stylesheet" href="http://www.matteoferla.com/Font-Awesome-Pro/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
@@ -29,7 +29,7 @@
 
     <div class="row my-5">
         <div class="col-lg-1 offset-lg-2 hidden-sm">
-            <img src="${request.static_path('dnd_app:static/Owlbear.jpg')}" width="100%" alt="owlbear icon"/>
+            <img src="${request.static_path('DnD_app:static/Owlbear.jpg')}" width="100%" alt="owlbear icon"/>
         </div><!--icon-->
 
         <div class="col-lg-5 col-sm-12 align-middle">
@@ -392,7 +392,7 @@ ga('send', 'pageview');
 
 
 </script>
-    <script type="text/javascript" src="${request.static_path('dnd_app:static/dnd.js')}"></script>
+    <script type="text/javascript" src="${request.static_path('DnD_app:static/dnd.js')}"></script>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </body>

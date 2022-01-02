@@ -1,4 +1,4 @@
-dnd_app
+DnD_app
 =======
 
 Getting Started
@@ -7,7 +7,7 @@ Getting Started
 - Change directory into your newly created project if not already there. Your
   current directory should be the same as this README.txt file and setup.py.
 
-    cd dnd_app
+    cd DnD_app
 
 - Create a Python virtual environment, if not already created.
 

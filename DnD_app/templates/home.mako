@@ -8,8 +8,8 @@
           content="DnD, D&D, 5e, Dungeons and Dragons, next, online, python, battle, encounter, simulator">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>D&D Encounter simulator</title>
-    <link rel="icon" href="${request.static_path('dnd_app:static/favicon.ico')}" type="image/x-icon"/>
-    <link rel="shortcut icon" href="${request.static_path('dnd_app:static/favicon.ico')}" type="image/x-icon"/>
+    <link rel="icon" href="${request.static_path('DnD_app:static/favicon.ico')}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${request.static_path('DnD_app:static/favicon.ico')}" type="image/x-icon"/>
     <link rel="stylesheet" href="https://www.matteoferla.com/Font-Awesome-Pro/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
@@ -83,7 +83,7 @@ max-width: 1140px; !important;
 <div class="container">
     <div class="row my-3">
         <div class="col-lg-1 offset-lg-2 hidden-sm">
-            <img src="${request.static_path('dnd_app:static/Owlbear.jpg')}" width="100%" alt="owlbear icon"/>
+            <img src="${request.static_path('DnD_app:static/Owlbear.jpg')}" width="100%" alt="owlbear icon"/>
         </div><!--icon-->
 
         <div class="col-lg-6 col-sm-12 align-middle">
@@ -206,7 +206,7 @@ ga('send', 'pageview');
 
 
 </script>
-    <script type="text/javascript" src="${request.static_path('dnd_app:static/dnd.js')}"></script>
+    <script type="text/javascript" src="${request.static_path('DnD_app:static/dnd.js')}"></script>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>

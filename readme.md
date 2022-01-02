@@ -13,9 +13,11 @@ If you were looking for the python module to similate locally all the encounters
 
 ## Example
 
-import dnd_app
+```python
+import DnD_app
 import waitress
 from pyramid.router import Router
 
-app :Router = dnd_app.create_app()
+app :Router = DnD_app.create_app()
 waitress.serve(app, port=6666)
+```
